@@ -5,6 +5,14 @@ import { Award, Trophy, Users, Heart, Megaphone, Shield } from 'lucide-react';
 const Certifications = () => {
   const certifications = [
     {
+      title: "Oracle Cloud Infrastructure 2025 AI Foundations Associate",
+      issuer: "Oracle",
+      year: "2025",
+      category: "AI Foundations",
+      icon: Award,
+      color: "from-red-500 to-orange-500"
+    },
+    {
       title: "Cloud Technologies",
       issuer: "Infosys Springboard",
       year: "2025",
@@ -145,7 +153,7 @@ const Certifications = () => {
         <div className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-6">
           <Card className="card-gradient border-border text-center animate-scale-in">
             <CardContent className="p-6">
-              <div className="text-2xl font-bold text-primary mb-1">3</div>
+              <div className="text-2xl font-bold text-primary mb-1">4</div>
               <p className="text-sm text-muted-foreground">Certifications</p>
             </CardContent>
           </Card>

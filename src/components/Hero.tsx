@@ -38,7 +38,7 @@ const Hero = () => {
               </div>
               <div className="flex items-center justify-center lg:justify-start">
                 <Phone size={18} className="mr-2 text-primary" />
-                <span>+91 97619687402</span>
+                <span>+91 7619687402</span>
               </div>
               <div className="flex items-center justify-center lg:justify-start">
                 <Mail size={18} className="mr-2 text-primary" />
