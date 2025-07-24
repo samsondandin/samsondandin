@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Phone, Mail, Linkedin, Download } from 'lucide-react';
+import profileImage from '@/assets/profile-image.avif';
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -67,10 +68,12 @@ const Hero = () => {
           <div className="flex justify-center lg:justify-end animate-scale-in">
             <div className="relative">
               <div className="w-80 h-80 rounded-full bg-gradient-to-br from-primary via-accent to-primary p-1 shadow-elegant hover-glow transition-smooth">
-                <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
-                  <div className="w-72 h-72 rounded-full bg-muted flex items-center justify-center text-6xl font-bold text-muted-foreground">
-                    SD
-                  </div>
+                <div className="w-full h-full rounded-full bg-card flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={profileImage} 
+                    alt="Samson Dandin - AI/ML Developer"
+                    className="w-72 h-72 rounded-full object-cover"
+                  />
                 </div>
               </div>
               <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-primary rounded-full flex items-center justify-center animate-glow-pulse">
