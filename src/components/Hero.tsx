@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Phone, Mail, Linkedin, Download } from 'lucide-react';
+import { MapPin, Phone, Mail, Linkedin, Download, Github } from 'lucide-react';
 import profileImage from '@/assets/profile-image.avif';
 
 const Hero = () => {
@@ -53,12 +53,20 @@ const Hero = () => {
               </div>
               <div className="flex items-center justify-center lg:justify-start">
                 <Mail size={18} className="mr-2 text-primary" />
-                <span>samsondandin335@gmail.com</span>
+                <a href="mailto:samsondandin335@gmail.com" className="hover:text-primary transition-smooth">
+                  samsondandin335@gmail.com
+                </a>
               </div>
               <div className="flex items-center justify-center lg:justify-start">
                 <Linkedin size={18} className="mr-2 text-primary" />
-                <a href="https://linkedin.com/in/samson-dandin" className="hover:text-primary transition-smooth">
+                <a href="https://linkedin.com/in/samson-dandin" className="hover:text-primary transition-smooth" target="_blank" rel="noopener noreferrer">
                   linkedin.com/in/samson-dandin
+                </a>
+              </div>
+              <div className="flex items-center justify-center lg:justify-start">
+                <Github size={18} className="mr-2 text-primary" />
+                <a href="https://github.com/samsondandin" className="hover:text-primary transition-smooth" target="_blank" rel="noopener noreferrer">
+                  github.com/samsondandin
                 </a>
               </div>
             </div>

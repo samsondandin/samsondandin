@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { Mail, Phone, MapPin, Linkedin, Send, Download, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Send, Download, Loader2, Github } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const Contact = () => {
@@ -43,9 +43,16 @@ const Contact = () => {
     {
       icon: Linkedin,
       label: "LinkedIn",
-      value: "samson-dandin",
+      value: "linkedin.com/in/samson-dandin",
       href: "https://linkedin.com/in/samson-dandin",
       color: "text-blue-600"
+    },
+    {
+      icon: Github,
+      label: "GitHub",
+      value: "github.com/samsondandin",
+      href: "https://github.com/samsondandin",
+      color: "text-gray-600"
     }
   ];
 
@@ -171,8 +178,8 @@ const Contact = () => {
                         <a 
                           href={info.href} 
                           className="font-medium hover:text-primary transition-smooth"
-                          target={info.label === 'LinkedIn' ? '_blank' : undefined}
-                          rel={info.label === 'LinkedIn' ? 'noopener noreferrer' : undefined}
+                          target={info.label === 'LinkedIn' || info.label === 'GitHub' ? '_blank' : undefined}
+                          rel={info.label === 'LinkedIn' || info.label === 'GitHub' ? 'noopener noreferrer' : undefined}
                         >
                           {info.value}
                         </a>
