@@ -129,18 +129,28 @@ const Contact = () => {
   };
 
   const handleDownloadResume = () => {
-    // Create a temporary link to download resume
-    const link = document.createElement('a');
-    link.href = '/samson-dandin-resume.pdf'; // You'll need to add this file to the public folder
-    link.download = 'Samson_Dandin_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    toast({
-      title: "Resume Downloaded",
-      description: "Thank you for downloading my resume!",
-    });
+    try {
+      // Create a temporary link to download resume
+      const link = document.createElement('a');
+      link.href = '/samson-dandin-resume.pdf';
+      link.download = 'Samson_Dandin_Resume.pdf';
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      toast({
+        title: "Resume Downloaded Successfully!",
+        description: "Thank you for downloading my resume. I look forward to hearing from you!",
+      });
+    } catch (error) {
+      console.error('Download error:', error);
+      toast({
+        title: "Download Failed",
+        description: "Unable to download resume. Please try again or contact me directly.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (

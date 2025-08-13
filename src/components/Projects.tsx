@@ -7,7 +7,7 @@ const Projects = () => {
   const handleViewCode = (projectTitle: string) => {
     // Add GitHub URLs for each project
     const githubUrls = {
-      "Summmify - AI YouTube Video Summarizer": "https://github.com/samsondandin/summmify",
+      "Summmify - AI YouTube Video Summarizer": "https://github.com/samsondandin/summmify-ai-youtube-summarizer",
       "Sign Language Interpreter": "https://github.com/samsondandin/sign-language-interpreter"
     };
     
@@ -15,6 +15,7 @@ const Projects = () => {
     if (url) {
       window.open(url, '_blank', 'noopener,noreferrer');
     } else {
+      // Fallback to main GitHub profile
       window.open('https://github.com/samsondandin', '_blank', 'noopener,noreferrer');
     }
   };
@@ -22,12 +23,12 @@ const Projects = () => {
   const handleLiveDemo = (projectTitle: string) => {
     // Add demo URLs for each project
     const demoUrls = {
-      "Summmify - AI YouTube Video Summarizer": "https://summmify-demo.streamlit.app",
-      "Sign Language Interpreter": "#" // Coming soon
+      "Summmify - AI YouTube Video Summarizer": "https://summmify-ai-demo.streamlit.app",
+      "Sign Language Interpreter": "" // Coming soon
     };
     
     const url = demoUrls[projectTitle as keyof typeof demoUrls];
-    if (url && url !== "#") {
+    if (url && url !== "") {
       window.open(url, '_blank', 'noopener,noreferrer');
     }
   };

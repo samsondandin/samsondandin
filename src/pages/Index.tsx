@@ -5,6 +5,7 @@ import Skills from '@/components/Skills';
 import Projects from '@/components/Projects';
 import Certifications from '@/components/Certifications';
 import Contact from '@/components/Contact';
+import ScrollToTop from '@/components/ScrollToTop';
 
 const Index = () => {
   return (
@@ -18,6 +19,9 @@ const Index = () => {
         <Certifications />
         <Contact />
       </main>
+      
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
       
       {/* Footer */}
       <footer className="bg-card border-t border-border py-8">

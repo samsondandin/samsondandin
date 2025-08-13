@@ -12,13 +12,19 @@ const Hero = () => {
   };
 
   const handleDownloadResume = () => {
-    // Create a temporary link to download resume
-    const link = document.createElement('a');
-    link.href = '/samson-dandin-resume.pdf'; // You'll need to add this file to the public folder
-    link.download = 'Samson_Dandin_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    try {
+      // Create a temporary link to download resume
+      const link = document.createElement('a');
+      link.href = '/samson-dandin-resume.pdf';
+      link.download = 'Samson_Dandin_Resume.pdf';
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Download error:', error);
+      alert('Unable to download resume. Please contact me directly.');
+    }
   };
 
   return (
