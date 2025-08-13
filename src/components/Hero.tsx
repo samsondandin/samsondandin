@@ -11,6 +11,16 @@ const Hero = () => {
     }
   };
 
+  const handleDownloadResume = () => {
+    // Create a temporary link to download resume
+    const link = document.createElement('a');
+    link.href = '/samson-dandin-resume.pdf'; // You'll need to add this file to the public folder
+    link.download = 'Samson_Dandin_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section id="home" className="min-h-screen hero-gradient flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -57,7 +67,7 @@ const Hero = () => {
               <Button onClick={scrollToContact} size="lg" className="accent-gradient hover:shadow-glow">
                 Get In Touch
               </Button>
-              <Button variant="outline" size="lg" className="hover-glow">
+              <Button onClick={handleDownloadResume} variant="outline" size="lg" className="hover-glow">
                 <Download size={18} className="mr-2" />
                 Download Resume
               </Button>

@@ -4,6 +4,34 @@ import { Button } from '@/components/ui/button';
 import { ExternalLink, Github, Youtube, Eye, MessageSquare, Clock } from 'lucide-react';
 
 const Projects = () => {
+  const handleViewCode = (projectTitle: string) => {
+    // Add GitHub URLs for each project
+    const githubUrls = {
+      "Summmify - AI YouTube Video Summarizer": "https://github.com/samsondandin/summmify",
+      "Sign Language Interpreter": "https://github.com/samsondandin/sign-language-interpreter"
+    };
+    
+    const url = githubUrls[projectTitle as keyof typeof githubUrls];
+    if (url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+      window.open('https://github.com/samsondandin', '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  const handleLiveDemo = (projectTitle: string) => {
+    // Add demo URLs for each project
+    const demoUrls = {
+      "Summmify - AI YouTube Video Summarizer": "https://summmify-demo.streamlit.app",
+      "Sign Language Interpreter": "#" // Coming soon
+    };
+    
+    const url = demoUrls[projectTitle as keyof typeof demoUrls];
+    if (url && url !== "#") {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   const projects = [
     {
       title: "Summmify - AI YouTube Video Summarizer",
@@ -118,13 +146,24 @@ const Projects = () => {
 
                 {/* Action Buttons */}
                 <div className="flex flex-wrap gap-3 pt-4">
-                  <Button variant="outline" size="sm" className="flex items-center">
+                  <Button 
+                    onClick={() => handleViewCode(project.title)}
+                    variant="outline" 
+                    size="sm" 
+                    className="flex items-center"
+                  >
                     <Github size={16} className="mr-2" />
                     View Code
                   </Button>
-                  <Button variant="outline" size="sm" className="flex items-center">
+                  <Button 
+                    onClick={() => handleLiveDemo(project.title)}
+                    variant="outline" 
+                    size="sm" 
+                    className="flex items-center"
+                    disabled={project.title === "Sign Language Interpreter"}
+                  >
                     <ExternalLink size={16} className="mr-2" />
-                    Live Demo
+                    {project.title === "Sign Language Interpreter" ? "Coming Soon" : "Live Demo"}
                   </Button>
                 </div>
               </CardContent>

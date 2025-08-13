@@ -5,10 +5,12 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { Mail, Phone, MapPin, Linkedin, Send, Download } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Send, Download, Loader2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -55,7 +57,7 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -68,18 +70,69 @@ const Contact = () => {
       return;
     }
 
-    // Simulate form submission
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. I'll get back to you soon!",
-    });
+    setIsLoading(true);
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
+    try {
+      // Initialize EmailJS
+      emailjs.init('WuPvADPuLyGsBVcX2');
+
+      // Send email using EmailJS
+      await emailjs.send(
+        'service_1fjqgah',
+        'template_2t6q3xe',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject || 'New Contact Form Message',
+          message: formData.message,
+          to_email: 'samsondandin335@gmail.com'
+        }
+      );
+
+      toast({
+        title: "Message Sent Successfully!",
+        description: "Thank you for reaching out. I'll get back to you soon!",
+      });
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      toast({
+        title: "Failed to Send Message",
+        description: "There was an error sending your message. Please try again or contact me directly.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleDirectEmail = () => {
+    window.open('mailto:samsondandin335@gmail.com?subject=Let\'s Connect&body=Hi Samson,', '_blank');
+  };
+
+  const handleLinkedInConnect = () => {
+    window.open('https://linkedin.com/in/samson-dandin', '_blank', 'noopener,noreferrer');
+  };
+
+  const handleDownloadResume = () => {
+    // Create a temporary link to download resume
+    const link = document.createElement('a');
+    link.href = '/samson-dandin-resume.pdf'; // You'll need to add this file to the public folder
+    link.download = 'Samson_Dandin_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    toast({
+      title: "Resume Downloaded",
+      description: "Thank you for downloading my resume!",
     });
   };
 
@@ -136,7 +189,7 @@ const Contact = () => {
             <Card className="card-gradient border-border shadow-elegant">
               <CardContent className="p-6 text-center">
                 <h3 className="text-lg font-semibold mb-4">Download My Resume</h3>
-                <Button className="accent-gradient hover:shadow-glow w-full">
+                <Button onClick={handleDownloadResume} className="accent-gradient hover:shadow-glow w-full">
                   <Download size={18} className="mr-2" />
                   Download PDF Resume
                 </Button>
@@ -215,9 +268,13 @@ const Contact = () => {
                     />
                   </div>
 
-                  <Button type="submit" className="w-full accent-gradient hover:shadow-glow">
-                    <Send size={18} className="mr-2" />
-                    Send Message
+                  <Button type="submit" disabled={isLoading} className="w-full accent-gradient hover:shadow-glow">
+                    {isLoading ? (
+                      <Loader2 size={18} className="mr-2 animate-spin" />
+                    ) : (
+                      <Send size={18} className="mr-2" />
+                    )}
+                    {isLoading ? 'Sending...' : 'Send Message'}
                   </Button>
                 </form>
               </CardContent>
@@ -235,11 +292,11 @@ const Contact = () => {
                 or want to discuss the latest in artificial intelligence, I'm here to help make it happen.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="accent-gradient hover:shadow-glow">
+                <Button onClick={handleDirectEmail} size="lg" className="accent-gradient hover:shadow-glow">
                   <Mail size={18} className="mr-2" />
                   Email Me Directly
                 </Button>
-                <Button variant="outline" size="lg" className="hover-glow">
+                <Button onClick={handleLinkedInConnect} variant="outline" size="lg" className="hover-glow">
                   <Linkedin size={18} className="mr-2" />
                   Connect on LinkedIn
                 </Button>
