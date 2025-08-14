@@ -24,6 +24,7 @@ endobj
 /Font <<
 /F1 5 0 R
 /F2 6 0 R
+/F3 7 0 R
 >>
 >>
 >>
@@ -31,121 +32,205 @@ endobj
 
 4 0 obj
 <<
-/Length 3245
+/Length 4850
 >>
 stream
 BT
-/F1 18 Tf
-250 750 Td
+/F1 20 Tf
+200 750 Td
 (Samson Dandin) Tj
-0 -20 Td
-/F2 12 Tf
-(Aspiring AI/ML Engineer | Deep Learning Enthusiast | Computer Vision Developer | NLP Research Student) Tj
+
 0 -25 Td
-(Dharwad, India    samsondandin335@gmail.com    +91 7619687402) Tj
-0 -15 Td
-(linkedin.com/in/samson-dandin    github.com/samsondandin/samsondandin) Tj
+/F2 11 Tf
+(Aspiring AI/ML Engineer | Deep Learning Enthusiast | Computer Vision Developer | NLP Research Student) Tj
+
+0 -20 Td
+(Dharwad, India  •  samsondandin335@gmail.com  •  +91 7619687402) Tj
+0 -12 Td
+(linkedin.com/in/samson-dandin  •  github.com/samsondandin) Tj
 
 0 -40 Td
 /F1 14 Tf
 (SUMMARY) Tj
-0 -20 Td
-/F2 11 Tf
-(Passionate AI/ML engineering undergraduate student with proficiency in Python, TensorFlow, OpenCV, and) Tj
-0 -15 Td
-(HuggingFace. Experienced in developing deployable AI tools used by over 65 users. Strong foundation in machine) Tj
-0 -15 Td
-(learning fundamentals and real-world application development.) Tj
+0 -5 Td
+q 1 0 0 1 0 0 cm 400 0 l S Q
 
-0 -30 Td
+0 -18 Td
+/F2 11 Tf
+(Passionate AI/ML engineering undergraduate student with proficiency in Python, TensorFlow,) Tj
+0 -13 Td
+(OpenCV, and HuggingFace. Experienced in developing deployable AI tools used by over 65) Tj
+0 -13 Td
+(users. Strong foundation in machine learning fundamentals and real-world application) Tj
+0 -13 Td
+(development.) Tj
+
+0 -35 Td
 /F1 14 Tf
 (SKILLS) Tj
-0 -20 Td
-/F2 11 Tf
-(Languages: Python, Java, C, SQL) Tj
-0 -15 Td
-(Frameworks: TensorFlow, Keras, HuggingFace Transformers) Tj
-0 -15 Td
-(Libraries: OpenCV, Scikit-learn, Pandas, NumPy) Tj
-0 -15 Td
-(Tools: Git, Google Colab, Jupyter, VSCode, Docker) Tj
-0 -15 Td
-(Concepts: CNNs, RAG, LLMs, Model Deployment) Tj
+0 -5 Td
+q 1 0 0 1 0 0 cm 400 0 l S Q
 
-0 -30 Td
+0 -18 Td
+/F3 11 Tf
+(Languages:) Tj
+0 0 Td
+/F2 11 Tf
+( Python, Java, C, SQL) Tj
+
+0 -15 Td
+/F3 11 Tf
+(Frameworks:) Tj
+0 0 Td
+/F2 11 Tf
+( TensorFlow, Keras, HuggingFace Transformers) Tj
+
+0 -15 Td
+/F3 11 Tf
+(Libraries:) Tj
+0 0 Td
+/F2 11 Tf
+( OpenCV, Scikit-learn, Pandas, NumPy) Tj
+
+0 -15 Td
+/F3 11 Tf
+(Tools:) Tj
+0 0 Td
+/F2 11 Tf
+( Git, Google Colab, Jupyter, VSCode, Docker) Tj
+
+0 -15 Td
+/F3 11 Tf
+(Concepts:) Tj
+0 0 Td
+/F2 11 Tf
+( CNNs, RAG, LLMs, Model Deployment) Tj
+
+0 -35 Td
 /F1 14 Tf
 (EDUCATION) Tj
-0 -20 Td
+0 -5 Td
+q 1 0 0 1 0 0 cm 400 0 l S Q
+
+0 -18 Td
+/F3 11 Tf
+(B.E. in Artificial Intelligence and Machine Learning) Tj
+300 0 Td
+/F2 10 Tf
+(2022 – 2026) Tj
+-300 -13 Td
 /F2 11 Tf
-(B.E. in Artificial Intelligence and Machine Learning                                          2022 – 2026) Tj
-0 -15 Td
 (SDM College of Engineering and Technology, Dharwad) Tj
-0 -15 Td
-(Senior Secondary \(CBSE\), Science Stream                                                    2010 – 2022) Tj
-0 -15 Td
+
+0 -20 Td
+/F3 11 Tf
+(Senior Secondary \(CBSE\), Science Stream) Tj
+300 0 Td
+/F2 10 Tf
+(2010 – 2022) Tj
+-300 -13 Td
+/F2 11 Tf
 (Kendriya Vidyalaya, Dharwad) Tj
 
-0 -30 Td
+0 -35 Td
 /F1 14 Tf
 (PROJECTS) Tj
-0 -20 Td
-/F2 11 Tf
-(Sign Language Interpreter                                                                    Mar – Jun 2025) Tj
-0 -15 Td
-(– Designed a CNN-based gesture recognition model with OpenCV, reducing classification error by 22%.) Tj
-0 -15 Td
-(– Integrated Zoom and TTS APIs, enabling 20+ live gesture-to-speech interactions.) Tj
-0 -15 Td
-(– Achieved 88% accuracy across 50+ real-time user trials.) Tj
-0 -15 Td
-(Summify: AI YouTube Summarizer                                                             Nov 2024 – Jan 2025) Tj
-0 -15 Td
-(– Built an LLM-based summarizer using HuggingFace Transformers and Flask; processed 50+ videos.) Tj
-0 -15 Td
-(– Reduced content length by 78% while retaining key points, improving viewer comprehension.) Tj
-0 -15 Td
-(– Added question-answering module, increasing user interaction by 60%.) Tj
+0 -5 Td
+q 1 0 0 1 0 0 cm 400 0 l S Q
 
-0 -30 Td
+0 -18 Td
+/F3 12 Tf
+(Sign Language Interpreter) Tj
+300 0 Td
+/F2 10 Tf
+(Mar – Jun 2025) Tj
+-300 -15 Td
+/F2 11 Tf
+(• Designed a CNN-based gesture recognition model with OpenCV, reducing classification) Tj
+0 -13 Td
+(  error by 22%.) Tj
+0 -13 Td
+(• Integrated Zoom and TTS APIs, enabling 20+ live gesture-to-speech interactions.) Tj
+0 -13 Td
+(• Achieved 88% accuracy across 50+ real-time user trials.) Tj
+
+0 -20 Td
+/F3 12 Tf
+(Summify: AI YouTube Summarizer) Tj
+300 0 Td
+/F2 10 Tf
+(Nov 2024 – Jan 2025) Tj
+-300 -15 Td
+/F2 11 Tf
+(• Built an LLM-based summarizer using HuggingFace Transformers and Flask;) Tj
+0 -13 Td
+(  processed 50+ videos.) Tj
+0 -13 Td
+(• Reduced content length by 78% while retaining key points, improving viewer) Tj
+0 -13 Td
+(  comprehension.) Tj
+0 -13 Td
+(• Added question-answering module, increasing user interaction by 60%.) Tj
+
+0 -35 Td
 /F1 14 Tf
 (ACADEMIC ROLES) Tj
-0 -20 Td
-/F2 11 Tf
-(Computer Vision Developer – Sign Language Project                                           Mar – Jun 2025) Tj
-0 -15 Td
-(– Led model training and gesture detection logic, reducing latency by 30%.) Tj
-0 -15 Td
-(– Integrated end-to-end inference pipeline across Zoom API and speech modules.) Tj
-0 -15 Td
-(LLM Workflow Designer – Summify Project                                                    Nov 2024 – Jan 2025) Tj
-0 -15 Td
-(– Developed NLP logic with HuggingFace pipelines, enhancing summary clarity.) Tj
-0 -15 Td
-(– Deployed app backend and APIs for smoother cross-platform usage.) Tj
+0 -5 Td
+q 1 0 0 1 0 0 cm 400 0 l S Q
 
-0 -30 Td
+0 -18 Td
+/F3 12 Tf
+(Computer Vision Developer – Sign Language Project) Tj
+300 0 Td
+/F2 10 Tf
+(Mar – Jun 2025) Tj
+-300 -15 Td
+/F2 11 Tf
+(• Led model training and gesture detection logic, reducing latency by 30%.) Tj
+0 -13 Td
+(• Integrated end-to-end inference pipeline across Zoom API and speech modules.) Tj
+
+0 -20 Td
+/F3 12 Tf
+(LLM Workflow Designer – Summify Project) Tj
+300 0 Td
+/F2 10 Tf
+(Nov 2024 – Jan 2025) Tj
+-300 -15 Td
+/F2 11 Tf
+(• Developed NLP logic with HuggingFace pipelines, enhancing summary clarity.) Tj
+0 -13 Td
+(• Deployed app backend and APIs for smoother cross-platform usage.) Tj
+
+0 -35 Td
 /F1 14 Tf
 (CERTIFICATIONS) Tj
-0 -20 Td
-/F2 11 Tf
-(– Oracle Cloud AI Foundations Associate — Oracle \(2025\)) Tj
-0 -15 Td
-(– Cloud Technologies — Infosys Springboard \(2025\)) Tj
-0 -15 Td
-(– Explore ML with Python — Infosys Springboard \(2024\)) Tj
-0 -15 Td
-(– Programming in Java — Infosys Springboard \(2024\)) Tj
+0 -5 Td
+q 1 0 0 1 0 0 cm 400 0 l S Q
 
-0 -30 Td
+0 -18 Td
+/F2 11 Tf
+(• Oracle Cloud AI Foundations Associate — Oracle \(2025\)) Tj
+0 -13 Td
+(• Cloud Technologies — Infosys Springboard \(2025\)) Tj
+0 -13 Td
+(• Explore ML with Python — Infosys Springboard \(2024\)) Tj
+0 -13 Td
+(• Programming in Java — Infosys Springboard \(2024\)) Tj
+
+0 -35 Td
 /F1 14 Tf
 (ACHIEVEMENTS) Tj
-0 -20 Td
+0 -5 Td
+q 1 0 0 1 0 0 cm 400 0 l S Q
+
+0 -18 Td
 /F2 11 Tf
-(– Deployed tools adopted by 65+ users, improving automation efficiency by 40%.) Tj
-0 -15 Td
-(– Led 3+ blood donation and health awareness drives, reaching over 300 people in collaboration with Dandin Trust,) Tj
-0 -15 Td
-(  Indian Cancer Society, and ASER organization.) Tj
+(• Deployed tools adopted by 65+ users, improving automation efficiency by 40%.) Tj
+0 -13 Td
+(• Led 3+ blood donation and health awareness drives, reaching over 300 people in) Tj
+0 -13 Td
+(  collaboration with Dandin Trust, Indian Cancer Society, and ASER organization.) Tj
 
 ET
 endstream
@@ -167,20 +252,29 @@ endobj
 >>
 endobj
 
+7 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica-Oblique
+>>
+endobj
+
 xref
-0 7
+0 8
 0000000000 65535 f 
 0000000009 00000 n 
 0000000058 00000 n 
 0000000115 00000 n 
-0000000292 00000 n 
-0000003589 00000 n 
-0000003669 00000 n 
+0000000312 00000 n 
+0000005214 00000 n 
+0000005294 00000 n 
+0000005374 00000 n 
 trailer
 <<
-/Size 7
+/Size 8
 /Root 1 0 R
 >>
 startxref
-3744
+5459
 %%EOF
