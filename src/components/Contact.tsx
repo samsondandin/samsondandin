@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { Mail, Phone, MapPin, Linkedin, Send, Download, Loader2, Github } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import { sanitizeInput, checkRateLimit, validateFormData, logSecurityEvent } from '@/utils/security';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -58,40 +59,62 @@ const Contact = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    // Sanitize input to prevent XSS
+    const sanitizedValue = sanitizeInput(value);
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: sanitizedValue
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic validation
-    if (!formData.name || !formData.email || !formData.message) {
+    // Comprehensive validation
+    const validation = validateFormData(formData);
+    if (!validation.isValid) {
       toast({
-        title: "Missing Information",
-        description: "Please fill in all required fields.",
+        title: "Validation Error",
+        description: validation.errors.join(', '),
         variant: "destructive"
       });
       return;
     }
 
+    // Rate limiting check
+    const userIdentifier = formData.email; // Using email as identifier
+    if (!checkRateLimit(userIdentifier)) {
+      logSecurityEvent('RATE_LIMIT_EXCEEDED', { email: formData.email });
+      toast({
+        title: "Too Many Requests",
+        description: "Please wait before sending another message. Maximum 3 messages per hour.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Check for environment variables
+    const emailjsConfig = {
+      publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'WuPvADPuLyGsBVcX2',
+      serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_1fjqgah',
+      templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_2t6q3xe'
+    };
+
     setIsLoading(true);
 
     try {
-      // Initialize EmailJS
-      emailjs.init('WuPvADPuLyGsBVcX2');
+      // Initialize EmailJS with environment variable or fallback
+      emailjs.init(emailjsConfig.publicKey);
 
-      // Send email using EmailJS
+      // Send email using EmailJS with sanitized data
       await emailjs.send(
-        'service_1fjqgah',
-        'template_2t6q3xe',
+        emailjsConfig.serviceId,
+        emailjsConfig.templateId,
         {
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject || 'New Contact Form Message',
-          message: formData.message,
+          from_name: sanitizeInput(formData.name),
+          from_email: sanitizeInput(formData.email),
+          subject: sanitizeInput(formData.subject) || 'New Contact Form Message',
+          message: sanitizeInput(formData.message),
           to_email: 'samsondandin335@gmail.com'
         }
       );
@@ -108,8 +131,20 @@ const Contact = () => {
         subject: '',
         message: ''
       });
+
+      // Log successful submission
+      logSecurityEvent('EMAIL_SENT', { 
+        fromEmail: formData.email,
+        timestamp: new Date().toISOString()
+      });
+
     } catch (error) {
       console.error('EmailJS Error:', error);
+      logSecurityEvent('EMAIL_SEND_FAILED', { 
+        error: error instanceof Error ? error.message : 'Unknown error',
+        fromEmail: formData.email
+      });
+      
       toast({
         title: "Failed to Send Message",
         description: "There was an error sending your message. Please try again or contact me directly.",
