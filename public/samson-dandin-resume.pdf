@@ -23,6 +23,7 @@ endobj
 /Resources <<
 /Font <<
 /F1 5 0 R
+/F2 6 0 R
 >>
 >>
 >>
@@ -30,73 +31,122 @@ endobj
 
 4 0 obj
 <<
-/Length 1234
+/Length 3245
 >>
 stream
 BT
-/F1 24 Tf
-100 700 Td
+/F1 18 Tf
+250 750 Td
 (Samson Dandin) Tj
+0 -20 Td
+/F2 12 Tf
+(Aspiring AI/ML Engineer | Deep Learning Enthusiast | Computer Vision Developer | NLP Research Student) Tj
+0 -25 Td
+(Dharwad, India    samsondandin335@gmail.com    +91 7619687402) Tj
+0 -15 Td
+(linkedin.com/in/samson-dandin    github.com/samsondandin/samsondandin) Tj
+
 0 -40 Td
-/F1 16 Tf
-(AI/ML Enthusiast | Problem Solver | Aspiring Developer) Tj
+/F1 14 Tf
+(SUMMARY) Tj
+0 -20 Td
+/F2 11 Tf
+(Passionate AI/ML engineering undergraduate student with proficiency in Python, TensorFlow, OpenCV, and) Tj
+0 -15 Td
+(HuggingFace. Experienced in developing deployable AI tools used by over 65 users. Strong foundation in machine) Tj
+0 -15 Td
+(learning fundamentals and real-world application development.) Tj
+
 0 -30 Td
-/F1 12 Tf
-(Email: samsondandin335@gmail.com) Tj
-0 -20 Td
-(Phone: +91 7619687402) Tj
-0 -20 Td
-(Location: Dharwad, Karnataka, India) Tj
-0 -20 Td
-(LinkedIn: linkedin.com/in/samson-dandin) Tj
-0 -20 Td
-(GitHub: github.com/samsondandin) Tj
-0 -40 Td
-/F1 16 Tf
-(EDUCATION) Tj
-0 -25 Td
-/F1 12 Tf
-(B.E. in Computer Science and Engineering) Tj
-0 -20 Td
-(Specialized in Artificial Intelligence and Machine Learning) Tj
-0 -40 Td
-/F1 16 Tf
+/F1 14 Tf
 (SKILLS) Tj
-0 -25 Td
-/F1 12 Tf
-(Programming: Python, SQL, Java, C) Tj
 0 -20 Td
-(AI/ML: TensorFlow, Scikit-learn, NLP, Computer Vision) Tj
+/F2 11 Tf
+(Languages: Python, Java, C, SQL) Tj
+0 -15 Td
+(Frameworks: TensorFlow, Keras, HuggingFace Transformers) Tj
+0 -15 Td
+(Libraries: OpenCV, Scikit-learn, Pandas, NumPy) Tj
+0 -15 Td
+(Tools: Git, Google Colab, Jupyter, VSCode, Docker) Tj
+0 -15 Td
+(Concepts: CNNs, RAG, LLMs, Model Deployment) Tj
+
+0 -30 Td
+/F1 14 Tf
+(EDUCATION) Tj
 0 -20 Td
-(Tools: VSCode, Jupyter Notebook, Streamlit) Tj
-0 -40 Td
-/F1 16 Tf
+/F2 11 Tf
+(B.E. in Artificial Intelligence and Machine Learning                                          2022 – 2026) Tj
+0 -15 Td
+(SDM College of Engineering and Technology, Dharwad) Tj
+0 -15 Td
+(Senior Secondary \(CBSE\), Science Stream                                                    2010 – 2022) Tj
+0 -15 Td
+(Kendriya Vidyalaya, Dharwad) Tj
+
+0 -30 Td
+/F1 14 Tf
 (PROJECTS) Tj
-0 -25 Td
-/F1 12 Tf
-(Summmify - AI YouTube Video Summarizer) Tj
-0 -15 Td
-(- Developed comprehensive NLP-based summarization tool) Tj
-0 -15 Td
-(- Integrated intelligent chatbot for user interaction) Tj
 0 -20 Td
-(Sign Language Interpreter) Tj
+/F2 11 Tf
+(Sign Language Interpreter                                                                    Mar – Jun 2025) Tj
 0 -15 Td
-(- Built computer vision system for gesture recognition) Tj
+(– Designed a CNN-based gesture recognition model with OpenCV, reducing classification error by 22%.) Tj
 0 -15 Td
-(- Enhanced accessibility for Deaf community) Tj
-0 -40 Td
-/F1 16 Tf
+(– Integrated Zoom and TTS APIs, enabling 20+ live gesture-to-speech interactions.) Tj
+0 -15 Td
+(– Achieved 88% accuracy across 50+ real-time user trials.) Tj
+0 -15 Td
+(Summify: AI YouTube Summarizer                                                             Nov 2024 – Jan 2025) Tj
+0 -15 Td
+(– Built an LLM-based summarizer using HuggingFace Transformers and Flask; processed 50+ videos.) Tj
+0 -15 Td
+(– Reduced content length by 78% while retaining key points, improving viewer comprehension.) Tj
+0 -15 Td
+(– Added question-answering module, increasing user interaction by 60%.) Tj
+
+0 -30 Td
+/F1 14 Tf
+(ACADEMIC ROLES) Tj
+0 -20 Td
+/F2 11 Tf
+(Computer Vision Developer – Sign Language Project                                           Mar – Jun 2025) Tj
+0 -15 Td
+(– Led model training and gesture detection logic, reducing latency by 30%.) Tj
+0 -15 Td
+(– Integrated end-to-end inference pipeline across Zoom API and speech modules.) Tj
+0 -15 Td
+(LLM Workflow Designer – Summify Project                                                    Nov 2024 – Jan 2025) Tj
+0 -15 Td
+(– Developed NLP logic with HuggingFace pipelines, enhancing summary clarity.) Tj
+0 -15 Td
+(– Deployed app backend and APIs for smoother cross-platform usage.) Tj
+
+0 -30 Td
+/F1 14 Tf
 (CERTIFICATIONS) Tj
-0 -25 Td
-/F1 12 Tf
-(Oracle Cloud Infrastructure 2025 AI Foundations Associate) Tj
+0 -20 Td
+/F2 11 Tf
+(– Oracle Cloud AI Foundations Associate — Oracle \(2025\)) Tj
 0 -15 Td
-(Cloud Technologies - Infosys Springboard) Tj
+(– Cloud Technologies — Infosys Springboard \(2025\)) Tj
 0 -15 Td
-(Machine Learning using Python - Infosys Springboard) Tj
+(– Explore ML with Python — Infosys Springboard \(2024\)) Tj
 0 -15 Td
-(Programming using Java - Infosys Springboard) Tj
+(– Programming in Java — Infosys Springboard \(2024\)) Tj
+
+0 -30 Td
+/F1 14 Tf
+(ACHIEVEMENTS) Tj
+0 -20 Td
+/F2 11 Tf
+(– Deployed tools adopted by 65+ users, improving automation efficiency by 40%.) Tj
+0 -15 Td
+(– Led 3+ blood donation and health awareness drives, reaching over 300 people in collaboration with Dandin Trust,) Tj
+0 -15 Td
+(  Indian Cancer Society, and ASER organization.) Tj
+
 ET
 endstream
 endobj
@@ -105,23 +155,32 @@ endobj
 <<
 /Type /Font
 /Subtype /Type1
+/BaseFont /Helvetica-Bold
+>>
+endobj
+
+6 0 obj
+<<
+/Type /Font
+/Subtype /Type1
 /BaseFont /Helvetica
 >>
 endobj
 
 xref
-0 6
+0 7
 0000000000 65535 f 
 0000000009 00000 n 
 0000000058 00000 n 
 0000000115 00000 n 
 0000000292 00000 n 
-0000001584 00000 n 
+0000003589 00000 n 
+0000003669 00000 n 
 trailer
 <<
-/Size 6
+/Size 7
 /Root 1 0 R
 >>
 startxref
-1661
+3744
 %%EOF
