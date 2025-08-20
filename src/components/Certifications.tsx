@@ -81,98 +81,134 @@ const Certifications = () => {
   ];
 
   return (
-    <section id="certifications" className="section-spacing px-4 sm:px-6 lg:px-8 bg-secondary/5">
-      <div className="max-w-7xl mx-auto">
+    <section id="certifications" className="section-spacing px-4 sm:px-6 lg:px-8 bg-secondary/5 relative overflow-hidden">
+      {/* Enhanced Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 pattern-dots opacity-15"></div>
+        <div className="floating-orb"></div>
+        <div className="floating-orb"></div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4">Recognition</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <Badge variant="outline" className="mb-4 neon-border">
+            <Award size={14} className="mr-2" />
+            Recognition
+          </Badge>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">
             Certifications & <span className="accent-gradient bg-clip-text text-transparent">Achievements</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto animate-slide-up">
             Continuous learning and community impact through various initiatives
           </p>
         </div>
 
-        {/* Certifications */}
+        {/* Enhanced Certifications */}
         <div className="mb-16">
           <h3 className="text-2xl font-bold mb-8 text-center">Professional Certifications</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certifications.map((cert, index) => (
-              <Card key={index} className="card-gradient border-border hover-glow transition-smooth animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                <CardHeader className="pb-4">
-                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${cert.color} flex items-center justify-center mb-4 shadow-lg`}>
-                    <cert.icon size={24} className="text-white" />
+              <Card key={index} className="card-gradient border-border hover-glow transition-bounce animate-fade-in group relative overflow-hidden" style={{ animationDelay: `${index * 0.1}s` }}>
+                {/* Animated background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
+                
+                <CardHeader className="pb-4 relative z-10">
+                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${cert.color} flex items-center justify-center mb-4 shadow-glow group-hover:scale-110 transition-bounce`}>
+                    <cert.icon size={28} className="text-white" />
                   </div>
-                  <CardTitle className="text-lg leading-tight">{cert.title}</CardTitle>
+                  <CardTitle className="text-lg leading-tight group-hover:text-primary transition-smooth">{cert.title}</CardTitle>
                   <div className="flex items-center justify-between">
                     <Badge variant="secondary" className="text-xs">{cert.category}</Badge>
-                    <span className="text-sm text-muted-foreground">{cert.year}</span>
+                    <span className="text-sm text-muted-foreground font-mono">{cert.year}</span>
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">{cert.issuer}</p>
+                <CardContent className="relative z-10">
+                  <p className="text-sm text-muted-foreground font-medium">{cert.issuer}</p>
                 </CardContent>
+                
+                {/* Decorative elements */}
+                <div className="absolute top-0 right-0 w-12 h-12 bg-accent/10 rounded-bl-full opacity-0 group-hover:opacity-100 transition-smooth"></div>
               </Card>
             ))}
           </div>
         </div>
 
-        {/* Achievements */}
+        {/* Enhanced Achievements */}
         <div className="mb-16">
           <h3 className="text-2xl font-bold mb-8 text-center">Competition Achievements</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {achievements.map((achievement, index) => (
-              <Card key={index} className="card-gradient border-border hover-glow transition-smooth text-center animate-scale-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                <CardContent className="p-6">
-                  <achievement.icon size={32} className={`mx-auto mb-4 ${achievement.color}`} />
-                  <h4 className="font-semibold mb-2">{achievement.title}</h4>
-                  <Badge variant="outline">{achievement.semester}</Badge>
+              <Card key={index} className="card-gradient border-border hover-glow transition-bounce text-center animate-scale-in group relative overflow-hidden" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
+                <CardContent className="p-8 relative z-10">
+                  <div className="w-20 h-20 bg-gradient-to-br from-yellow-400/20 to-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow group-hover:scale-110 transition-bounce">
+                    <achievement.icon size={36} className={`${achievement.color} drop-shadow-lg`} />
+                  </div>
+                  <h4 className="font-semibold mb-2 group-hover:text-primary transition-smooth">{achievement.title}</h4>
+                  <Badge variant="outline" className="bg-primary/5 border-primary/20">{achievement.semester}</Badge>
                 </CardContent>
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-smooth origin-left"></div>
               </Card>
             ))}
           </div>
         </div>
 
-        {/* Community Involvement */}
+        {/* Enhanced Community Involvement */}
         <div>
           <h3 className="text-2xl font-bold mb-8 text-center">Community Involvement</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {communityWork.map((work, index) => (
-              <Card key={index} className="card-gradient border-border hover-glow transition-smooth animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                <CardContent className="p-6 text-center">
-                  <work.icon size={32} className={`mx-auto mb-4 ${work.color}`} />
-                  <h4 className="font-semibold mb-2">{work.title}</h4>
-                  <p className="text-sm text-muted-foreground">{work.description}</p>
+              <Card key={index} className="card-gradient border-border hover-glow transition-bounce animate-fade-in group relative overflow-hidden" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-pink-500/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
+                <CardContent className="p-8 text-center relative z-10">
+                  <div className="w-20 h-20 bg-gradient-to-br from-red-500/10 to-pink-500/10 rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow group-hover:scale-110 transition-bounce">
+                    <work.icon size={32} className={`${work.color} drop-shadow-lg`} />
+                  </div>
+                  <h4 className="font-semibold mb-2 group-hover:text-primary transition-smooth">{work.title}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{work.description}</p>
                 </CardContent>
+                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-accent/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-smooth"></div>
               </Card>
             ))}
           </div>
         </div>
 
-        {/* Stats Summary */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-6">
-          <Card className="card-gradient border-border text-center animate-scale-in">
-            <CardContent className="p-6">
-              <div className="text-2xl font-bold text-primary mb-1">4</div>
-              <p className="text-sm text-muted-foreground">Certifications</p>
+        {/* Enhanced Stats Summary */}
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+          <Card className="glass-morphism shadow-elegant text-center animate-scale-in group">
+            <CardContent className="p-6 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
+              <div className="relative z-10">
+                <div className="text-3xl font-bold text-primary mb-1 font-mono">4</div>
+                <p className="text-sm text-muted-foreground">Certifications</p>
+              </div>
             </CardContent>
           </Card>
-          <Card className="card-gradient border-border text-center animate-scale-in" style={{ animationDelay: '0.1s' }}>
-            <CardContent className="p-6">
-              <div className="text-2xl font-bold text-accent mb-1">3</div>
-              <p className="text-sm text-muted-foreground">Competition Wins</p>
+          <Card className="glass-morphism shadow-elegant text-center animate-scale-in group" style={{ animationDelay: '0.1s' }}>
+            <CardContent className="p-6 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
+              <div className="relative z-10">
+                <div className="text-3xl font-bold text-accent mb-1 font-mono">3</div>
+                <p className="text-sm text-muted-foreground">Competition Wins</p>
+              </div>
             </CardContent>
           </Card>
-          <Card className="card-gradient border-border text-center animate-scale-in" style={{ animationDelay: '0.2s' }}>
-            <CardContent className="p-6">
-              <div className="text-2xl font-bold text-primary mb-1">3</div>
-              <p className="text-sm text-muted-foreground">Community Initiatives</p>
+          <Card className="glass-morphism shadow-elegant text-center animate-scale-in group" style={{ animationDelay: '0.2s' }}>
+            <CardContent className="p-6 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
+              <div className="relative z-10">
+                <div className="text-3xl font-bold text-primary mb-1 font-mono">3</div>
+                <p className="text-sm text-muted-foreground">Community Initiatives</p>
+              </div>
             </CardContent>
           </Card>
-          <Card className="card-gradient border-border text-center animate-scale-in" style={{ animationDelay: '0.3s' }}>
-            <CardContent className="p-6">
-              <div className="text-2xl font-bold text-accent mb-1">2024-25</div>
-              <p className="text-sm text-muted-foreground">Active Years</p>
+          <Card className="glass-morphism shadow-elegant text-center animate-scale-in group" style={{ animationDelay: '0.3s' }}>
+            <CardContent className="p-6 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
+              <div className="relative z-10">
+                <div className="text-2xl font-bold text-accent mb-1 font-mono">2024-25</div>
+                <p className="text-sm text-muted-foreground">Active Years</p>
+              </div>
             </CardContent>
           </Card>
         </div>

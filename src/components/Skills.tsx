@@ -37,41 +37,59 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="section-spacing px-4 sm:px-6 lg:px-8 bg-secondary/5">
-      <div className="max-w-7xl mx-auto">
+    <section id="skills" className="section-spacing px-4 sm:px-6 lg:px-8 bg-secondary/5 relative overflow-hidden">
+      {/* Enhanced Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 pattern-grid opacity-10"></div>
+        <div className="floating-orb"></div>
+        <div className="floating-orb"></div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4">Technical Expertise</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <Badge variant="outline" className="mb-4 neon-border">
+            <Code size={14} className="mr-2" />
+            Technical Expertise
+          </Badge>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">
             Skills & <span className="accent-gradient bg-clip-text text-transparent">Technologies</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto animate-slide-up">
             A comprehensive toolkit for building intelligent solutions and solving complex problems
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, index) => (
-            <Card key={index} className="card-gradient border-border hover-glow transition-smooth animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-              <CardHeader className="pb-4">
+            <Card key={index} className="card-gradient border-border hover-glow transition-bounce animate-fade-in group relative overflow-hidden" style={{ animationDelay: `${index * 0.1}s` }}>
+              {/* Animated background gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
+              
+              <CardHeader className="pb-4 relative z-10">
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <category.icon size={20} className="text-primary" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center shadow-glow group-hover:scale-110 transition-bounce">
+                    <category.icon size={22} className="text-primary" />
                   </div>
-                  <CardTitle className="text-lg">{category.title}</CardTitle>
+                  <CardTitle className="text-lg group-hover:text-primary transition-smooth">{category.title}</CardTitle>
                 </div>
               </CardHeader>
-              <CardContent>
+              <CardContent className="relative z-10">
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, skillIndex) => (
                     <span
                       key={skillIndex}
                       className="skill-badge"
+                      style={{ animationDelay: `${(index * 0.1) + (skillIndex * 0.05)}s` }}
                     >
                       {skill}
                     </span>
                   ))}
                 </div>
               </CardContent>
+              
+              {/* Decorative elements */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-accent/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-smooth"></div>
+              <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-primary/10 to-transparent rounded-tr-full opacity-0 group-hover:opacity-100 transition-smooth"></div>
             </Card>
           ))}
         </div>

@@ -42,11 +42,16 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <nav className="fixed top-0 w-full z-50 glass-morphism border-b border-border/50 shadow-elegant">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="text-xl font-bold accent-gradient bg-clip-text text-transparent">
-            Samson Dandin
+          <div className="text-xl font-bold accent-gradient bg-clip-text text-transparent hover-scale transition-bounce cursor-pointer">
+            <span className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                <span className="text-white text-sm font-bold">SD</span>
+              </div>
+              <span>Samson Dandin</span>
+            </span>
           </div>
 
           {/* Desktop Navigation */}

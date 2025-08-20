@@ -189,14 +189,25 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section-spacing px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section id="contact" className="section-spacing px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Enhanced Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 mesh-bg opacity-20"></div>
+        <div className="floating-orb"></div>
+        <div className="floating-orb"></div>
+        <div className="floating-orb"></div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4">Get In Touch</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <Badge variant="outline" className="mb-4 neon-border">
+            <Mail size={14} className="mr-2" />
+            Get In Touch
+          </Badge>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">
             Let's <span className="accent-gradient bg-clip-text text-transparent">Connect</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto animate-slide-up">
             Ready to collaborate on exciting AI/ML projects or discuss opportunities? I'd love to hear from you!
           </p>
         </div>
@@ -249,16 +260,19 @@ const Contact = () => {
             </Card>
           </div>
 
-          {/* Contact Form */}
+          {/* Enhanced Contact Form */}
           <div className="animate-slide-up">
-            <Card className="card-gradient border-border shadow-elegant">
-              <CardHeader>
+            <Card className="glass-morphism shadow-elegant relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
+              <CardHeader className="relative z-10">
                 <CardTitle className="flex items-center">
-                  <Send size={24} className="mr-3 text-primary" />
+                  <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mr-3">
+                    <Send size={20} className="text-white" />
+                  </div>
                   Send a Message
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="relative z-10">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>

@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github, Youtube, Eye, MessageSquare, Clock } from 'lucide-react';
+import { ExternalLink, Github, Youtube, Eye, MessageSquare, Clock, Code, Zap, Trophy } from 'lucide-react';
 
 const Projects = () => {
   const handleViewCode = (projectTitle: string) => {
@@ -68,34 +68,47 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="section-spacing px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="section-spacing px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Enhanced Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 pattern-dots opacity-10"></div>
+        <div className="floating-orb"></div>
+        <div className="floating-orb"></div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4">Portfolio</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <Badge variant="outline" className="mb-4 neon-border">
+            <Code size={14} className="mr-2" />
+            Portfolio
+          </Badge>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">
             Featured <span className="accent-gradient bg-clip-text text-transparent">Projects</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto animate-slide-up">
             Real-world applications of AI/ML technologies solving meaningful problems
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <Card key={index} className="card-gradient border-border hover-glow transition-smooth animate-fade-in group" style={{ animationDelay: `${index * 0.2}s` }}>
-              <CardHeader className="pb-6">
+            <Card key={index} className="glass-morphism border-border hover-glow transition-bounce animate-fade-in group relative overflow-hidden" style={{ animationDelay: `${index * 0.2}s` }}>
+              {/* Animated background gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
+              
+              <CardHeader className="pb-6 relative z-10">
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${project.color} flex items-center justify-center shadow-lg`}>
-                    <project.icon size={24} className="text-white" />
+                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${project.color} flex items-center justify-center shadow-glow group-hover:scale-110 transition-bounce`}>
+                    <project.icon size={28} className="text-white drop-shadow-lg" />
                   </div>
                   <div className="flex items-center space-x-2">
                     {project.timeline ? (
-                      <Badge variant="outline" className="flex items-center">
+                      <Badge variant="outline" className="flex items-center bg-primary/5 border-primary/20">
                         <Clock size={12} className="mr-1" />
                         {project.status}
                       </Badge>
                     ) : (
-                      <Badge variant="secondary">{project.status}</Badge>
+                      <Badge variant="secondary" className="bg-green-500/10 text-green-400 border-green-500/20">{project.status}</Badge>
                     )}
                   </div>
                 </div>
@@ -107,51 +120,58 @@ const Projects = () => {
                 </p>
               </CardHeader>
 
-              <CardContent className="space-y-6">
-                {/* Impact */}
-                <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
+              <CardContent className="space-y-6 relative z-10">
+                {/* Enhanced Impact */}
+                <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-4 border border-primary/20 group-hover:border-primary/40 transition-smooth">
                   <div className="flex items-center mb-2">
-                    <div className="w-2 h-2 bg-primary rounded-full mr-2"></div>
+                    <div className="w-3 h-3 bg-gradient-to-r from-primary to-accent rounded-full mr-2 animate-pulse"></div>
                     <span className="text-sm font-medium text-primary">Impact</span>
                   </div>
                   <p className="text-sm text-muted-foreground">{project.impact}</p>
                 </div>
 
-                {/* Features */}
+                {/* Enhanced Features */}
                 <div>
                   <h4 className="font-medium mb-3 flex items-center">
-                    <MessageSquare size={16} className="mr-2 text-accent" />
+                    <div className="w-5 h-5 bg-accent/20 rounded flex items-center justify-center mr-2">
+                      <MessageSquare size={12} className="text-accent" />
+                    </div>
                     Key Features
                   </h4>
-                  <ul className="space-y-1">
+                  <ul className="space-y-2">
                     {project.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="text-sm text-muted-foreground flex items-center">
-                        <div className="w-1 h-1 bg-accent rounded-full mr-2"></div>
+                      <li key={featureIndex} className="text-sm text-muted-foreground flex items-center group-hover:text-foreground transition-smooth">
+                        <div className="w-2 h-2 bg-gradient-to-r from-accent to-primary rounded-full mr-3 flex-shrink-0"></div>
                         {feature}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* Technologies */}
+                {/* Enhanced Technologies */}
                 <div>
-                  <h4 className="font-medium mb-3">Technologies Used</h4>
+                  <h4 className="font-medium mb-3 flex items-center">
+                    <div className="w-5 h-5 bg-primary/20 rounded flex items-center justify-center mr-2">
+                      <Zap size={12} className="text-primary" />
+                    </div>
+                    Technologies Used
+                  </h4>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="outline" className="text-xs">
+                      <Badge key={techIndex} variant="outline" className="text-xs hover:bg-primary/10 hover:border-primary/20 transition-smooth">
                         {tech}
                       </Badge>
                     ))}
                   </div>
                 </div>
 
-                {/* Action Buttons */}
+                {/* Enhanced Action Buttons */}
                 <div className="flex flex-wrap gap-3 pt-4">
                   <Button 
                     onClick={() => handleViewCode(project.title)}
                     variant="outline" 
                     size="sm" 
-                    className="flex items-center"
+                    className="flex items-center neon-border hover-glow"
                   >
                     <Github size={16} className="mr-2" />
                     View Code
@@ -160,7 +180,7 @@ const Projects = () => {
                     onClick={() => handleLiveDemo(project.title)}
                     variant="outline" 
                     size="sm" 
-                    className="flex items-center"
+                    className="flex items-center cyber-button"
                     disabled={project.title === "Sign Language Interpreter"}
                   >
                     <ExternalLink size={16} className="mr-2" />
@@ -168,28 +188,49 @@ const Projects = () => {
                   </Button>
                 </div>
               </CardContent>
+              
+              {/* Decorative elements */}
+              <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-accent/10 to-transparent rounded-tl-full opacity-0 group-hover:opacity-100 transition-smooth"></div>
             </Card>
           ))}
         </div>
 
-        {/* Project Stats */}
+        {/* Enhanced Project Stats */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Card className="card-gradient border-border text-center animate-scale-in">
-            <CardContent className="p-8">
-              <div className="text-3xl font-bold text-primary mb-2">2+</div>
-              <p className="text-muted-foreground">Major Projects</p>
+          <Card className="glass-morphism shadow-elegant text-center animate-scale-in group">
+            <CardContent className="p-8 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Code size={24} className="text-primary" />
+                </div>
+                <div className="text-3xl font-bold text-primary mb-2 font-mono">2+</div>
+                <p className="text-muted-foreground">Major Projects</p>
+              </div>
             </CardContent>
           </Card>
-          <Card className="card-gradient border-border text-center animate-scale-in" style={{ animationDelay: '0.2s' }}>
-            <CardContent className="p-8">
-              <div className="text-3xl font-bold text-accent mb-2">6+</div>
-              <p className="text-muted-foreground">Hours Saved Weekly</p>
+          <Card className="glass-morphism shadow-elegant text-center animate-scale-in group" style={{ animationDelay: '0.2s' }}>
+            <CardContent className="p-8 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-gradient-to-br from-accent/20 to-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock size={24} className="text-accent" />
+                </div>
+                <div className="text-3xl font-bold text-accent mb-2 font-mono">6+</div>
+                <p className="text-muted-foreground">Hours Saved Weekly</p>
+              </div>
             </CardContent>
           </Card>
-          <Card className="card-gradient border-border text-center animate-scale-in" style={{ animationDelay: '0.4s' }}>
-            <CardContent className="p-8">
-              <div className="text-3xl font-bold text-primary mb-2">100%</div>
-              <p className="text-muted-foreground">Real-world Impact</p>
+          <Card className="glass-morphism shadow-elegant text-center animate-scale-in group" style={{ animationDelay: '0.4s' }}>
+            <CardContent className="p-8 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Trophy size={24} className="text-primary" />
+                </div>
+                <div className="text-3xl font-bold text-primary mb-2 font-mono">100%</div>
+                <p className="text-muted-foreground">Real-world Impact</p>
+              </div>
             </CardContent>
           </Card>
         </div>
