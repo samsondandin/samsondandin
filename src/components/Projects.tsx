@@ -51,7 +51,7 @@ const Projects = () => {
     },
     {
       title: "Sign Language Interpreter",
-      description: "Built an advanced computer vision system to interpret sign language gestures for better communication accessibility. Aimed to bridge communication gaps for the Deaf community.",
+      description: "Built an advanced computer vision system to interpret sign language gestures for better communication accessibility. Successfully bridging communication gaps for the Deaf community.",
       impact: "Enhancing accessibility for the Deaf community",
       technologies: ["MediaPipe", "OpenCV", "TensorFlow", "Computer Vision"],
       features: [
@@ -62,8 +62,7 @@ const Projects = () => {
       ],
       icon: Eye,
       color: "from-blue-500 to-cyan-500",
-      status: "Mar 2025 – Jun 2025",
-      timeline: true
+      status: "Completed"
     }
   ];
 
@@ -102,14 +101,7 @@ const Projects = () => {
                     <project.icon size={28} className="text-white drop-shadow-lg" />
                   </div>
                   <div className="flex items-center space-x-2">
-                    {project.timeline ? (
-                      <Badge variant="outline" className="flex items-center bg-primary/5 border-primary/20">
-                        <Clock size={12} className="mr-1" />
-                        {project.status}
-                      </Badge>
-                    ) : (
-                      <Badge variant="secondary" className="bg-green-500/10 text-green-400 border-green-500/20">{project.status}</Badge>
-                    )}
+                  <Badge variant="secondary" className="bg-green-500/10 text-green-400 border-green-500/20">{project.status}</Badge>
                   </div>
                 </div>
                 <CardTitle className="text-xl mb-3 group-hover:text-primary transition-smooth">
@@ -181,10 +173,9 @@ const Projects = () => {
                     variant="outline" 
                     size="sm" 
                     className="flex items-center cyber-button"
-                    disabled={project.title === "Sign Language Interpreter"}
                   >
                     <ExternalLink size={16} className="mr-2" />
-                    {project.title === "Sign Language Interpreter" ? "Coming Soon" : "Live Demo"}
+                    Live Demo
                   </Button>
                 </div>
               </CardContent>
