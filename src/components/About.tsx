@@ -1,13 +1,13 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Brain, Code, Users, Trophy, Rocket, Target, Lightbulb, Star, Globe } from 'lucide-react';
+import { Brain, Code, Users, Trophy, Rocket, Target, Star, Globe, Heart, GraduationCap } from 'lucide-react';
 
 const About = () => {
   const highlights = [
     {
       icon: Brain,
-      title: "AI/ML Specialist",
-      description: "Deep learning, NLP, and computer vision expertise"
+      title: "AI/ML Engineer",
+      description: "Deep learning, NLP, and intelligent systems"
     },
     {
       icon: Code,
@@ -40,6 +40,16 @@ const About = () => {
     { icon: Trophy, label: "Excellence-Focused" },
   ];
 
+  const communityImpact = {
+    title: "Community Involvement",
+    description: "Reached 300+ people through 3+ health drives in collaboration with Dandin Trust and Indian Cancer Society",
+    initiatives: [
+      { icon: "🩸", label: "Blood Donation Drives" },
+      { icon: "🚭", label: "Tobacco Awareness Camps" },
+      { icon: "🎗️", label: "Cancer Awareness Campaigns" }
+    ]
+  };
+
   return (
     <section id="about" className="section-padding px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background */}
@@ -57,7 +67,7 @@ const About = () => {
             Passionate About <span className="gradient-text">Innovation</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Motivated and curious engineering student specializing in Artificial Intelligence and Machine Learning
+            B.E. student in Artificial Intelligence and Machine Learning (2022-2026), driven to build intelligent solutions
           </p>
         </div>
 
@@ -66,8 +76,14 @@ const About = () => {
           <div className="animate-fade-in">
             <Card className="glass-card card-hover">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-6 display-font">My Journey</h3>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                    <GraduationCap size={18} className="text-primary-foreground" />
+                  </div>
+                  <h3 className="text-2xl font-bold display-font">My Journey</h3>
+                </div>
                 <p className="text-muted-foreground leading-relaxed mb-6">
+                  As a <span className="text-primary font-medium">B.E. student in Artificial Intelligence and Machine Learning (2022-2026)</span>, 
                   I have a strong foundation in programming, data science, and deep learning, backed by hands-on projects 
                   that solve real-world problems. My journey in AI/ML began with curiosity and has evolved into a passion 
                   for creating intelligent solutions.
@@ -103,8 +119,53 @@ const About = () => {
           </div>
         </div>
 
+        {/* Community Impact Section */}
+        <div className="mt-12">
+          <Card className="glass-card card-hover animate-fade-in overflow-hidden">
+            <CardContent className="p-8">
+              <div className="flex flex-col md:flex-row md:items-center gap-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center shadow-lg">
+                    <Heart size={24} className="text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold display-font">{communityImpact.title}</h3>
+                    <p className="text-muted-foreground text-sm mt-1">{communityImpact.description}</p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-3 md:ml-auto">
+                  {communityImpact.initiatives.map((initiative, index) => (
+                    <Badge 
+                      key={index} 
+                      variant="secondary" 
+                      className="bg-rose-500/10 text-rose-500 border-rose-500/20 px-3 py-1.5"
+                    >
+                      <span className="mr-2">{initiative.icon}</span>
+                      {initiative.label}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-6 grid grid-cols-3 gap-4">
+                <div className="text-center p-4 rounded-xl bg-primary/5 border border-primary/10">
+                  <div className="text-2xl font-bold gradient-text code-font">300+</div>
+                  <p className="text-xs text-muted-foreground mt-1">People Reached</p>
+                </div>
+                <div className="text-center p-4 rounded-xl bg-primary/5 border border-primary/10">
+                  <div className="text-2xl font-bold gradient-text code-font">3+</div>
+                  <p className="text-xs text-muted-foreground mt-1">Health Drives</p>
+                </div>
+                <div className="text-center p-4 rounded-xl bg-primary/5 border border-primary/10">
+                  <div className="text-2xl font-bold gradient-text code-font">2</div>
+                  <p className="text-xs text-muted-foreground mt-1">Partner Organizations</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Languages & Values */}
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Languages */}
           <Card className="glass-card card-hover animate-fade-in">
             <CardContent className="p-8">
