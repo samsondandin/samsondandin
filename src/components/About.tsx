@@ -123,9 +123,10 @@ const About = () => {
         <div className="mt-12">
           <Card className="glass-card card-hover animate-fade-in overflow-hidden">
             <CardContent className="p-8">
-              <div className="flex flex-col md:flex-row md:items-center gap-6">
+              <div className="flex flex-col gap-6">
+                {/* Header */}
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center shadow-lg">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center shadow-lg shrink-0">
                     <Heart size={24} className="text-white" />
                   </div>
                   <div>
@@ -133,19 +134,22 @@ const About = () => {
                     <p className="text-muted-foreground text-sm mt-1">{communityImpact.description}</p>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-3 md:ml-auto">
+                
+                {/* Initiatives - Proper Grid Alignment */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {communityImpact.initiatives.map((initiative, index) => (
-                    <Badge 
+                    <div 
                       key={index} 
-                      variant="secondary" 
-                      className="bg-rose-500/10 text-rose-500 border-rose-500/20 px-4 py-2 flex items-center gap-2"
+                      className="flex items-center gap-3 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20"
                     >
-                      <span className="text-base leading-none">{initiative.icon}</span>
-                      <span className="leading-none">{initiative.label}</span>
-                    </Badge>
+                      <span className="text-2xl shrink-0">{initiative.icon}</span>
+                      <span className="text-rose-500 font-medium text-sm">{initiative.label}</span>
+                    </div>
                   ))}
                 </div>
               </div>
+              
+              {/* Stats Grid */}
               <div className="mt-6 grid grid-cols-3 gap-4">
                 <div className="text-center p-4 rounded-xl bg-primary/5 border border-primary/10">
                   <div className="text-2xl font-bold gradient-text code-font">300+</div>
