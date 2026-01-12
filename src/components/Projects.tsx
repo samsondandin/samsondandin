@@ -52,13 +52,8 @@ const Projects = () => {
   const [expandedArchitecture, setExpandedArchitecture] = useState<string | null>(null);
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
 
-  const handleViewCode = (projectTitle: string) => {
-    const githubUrls = {
-      "Summmify - AI YouTube Video Summarizer": "https://github.com/samsondandin/summmify-ai-youtube-summarizer",
-      "Sign Language Interpreter": "https://github.com/samsondandin/sign-language-interpreter"
-    };
-    const url = githubUrls[projectTitle as keyof typeof githubUrls];
-    if (url) window.open(url, '_blank', 'noopener,noreferrer');
+  const handleViewCode = () => {
+    window.open('https://github.com/samsondandin?tab=repositories', '_blank', 'noopener,noreferrer');
   };
 
   const handleLiveDemo = (projectTitle: string) => {
@@ -143,10 +138,10 @@ const Projects = () => {
           </div>
         </ScrollReveal>
 
-        {/* Bento Grid Projects */}
-        <div className="bento-grid">
+        {/* Projects Grid - Properly Aligned */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <ScrollReveal key={project.id} delay={index * 0.2} className={index === 0 ? 'bento-lg' : 'bento-md'}>
+            <ScrollReveal key={project.id} delay={index * 0.2}>
               <motion.div
                 onHoverStart={() => setHoveredProject(project.id)}
                 onHoverEnd={() => setHoveredProject(null)}
@@ -307,7 +302,7 @@ const Projects = () => {
                         animate={{ x: hoveredProject === project.id ? 0 : -10, opacity: hoveredProject === project.id ? 1 : 0.7 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <Button onClick={() => handleViewCode(project.title)} variant="outline" size="sm" className="w-full">
+                        <Button onClick={handleViewCode} variant="outline" size="sm" className="w-full">
                           <Github size={16} className="mr-2" />
                           View Code
                         </Button>
