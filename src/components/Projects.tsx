@@ -1,51 +1,30 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github, Youtube, Eye, Code, Zap, CheckCircle, Server, ChevronDown, Activity, Image } from 'lucide-react';
+import { ExternalLink, Github, Youtube, Eye, Code, Zap, CheckCircle, Server, X, Activity, Image } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import AnimatedCounter from '@/components/ui/AnimatedCounter';
 import GlowingChip from '@/components/ui/GlowingChip';
 
-const MetricRing = ({ value, label, color }: { value: number; label: string; color: string }) => {
-  const circumference = 2 * Math.PI * 36;
-  const strokeDashoffset = circumference - (value / 100) * circumference;
+const MetricLarge = ({ value, label, suffix = "%" }: { value: number; label: string; suffix?: string }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   
   return (
-    <div className="flex flex-col items-center">
-      <div className="relative w-20 h-20">
-        <svg className="w-20 h-20 transform -rotate-90">
-          <circle
-            cx="40"
-            cy="40"
-            r="36"
-            stroke="currentColor"
-            strokeWidth="6"
-            fill="none"
-            className="text-secondary/30"
-          />
-          <motion.circle
-            cx="40"
-            cy="40"
-            r="36"
-            stroke={color}
-            strokeWidth="6"
-            fill="none"
-            strokeLinecap="round"
-            strokeDasharray={circumference}
-            initial={{ strokeDashoffset: circumference }}
-            whileInView={{ strokeDashoffset }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-          />
-        </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-lg font-bold code-font">{value}%</span>
-        </div>
-      </div>
-      <span className="text-xs text-muted-foreground mt-2 text-center max-w-[80px]">{label}</span>
-    </div>
+    <motion.div 
+      ref={ref}
+      className="text-center"
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <span className="metric-large gradient-text">
+        {isInView && <AnimatedCounter value={value} suffix={suffix} duration={2000} />}
+      </span>
+      <p className="text-sm text-muted-foreground mt-2 uppercase tracking-widest">{label}</p>
+    </motion.div>
   );
 };
 
@@ -76,8 +55,8 @@ const Projects = () => {
       technologies: ["Remix", "TypeScript", "Tailwind CSS", "Cloudinary"],
       deployment: ["Vercel", "Cloudinary CDN"],
       metrics: [
-        { value: 95, label: "Lighthouse Score", positive: true },
-        { value: 40, label: "Faster Load", positive: true }
+        { value: 95, label: "Lighthouse", suffix: "+" },
+        { value: 40, label: "Faster Load", suffix: "%" }
       ],
       features: ["Masonry Grid Layout", "AI-Powered Search", "Drag & Drop Sorting", "WebP/AVIF Optimization"],
       architecture: {
@@ -97,8 +76,8 @@ const Projects = () => {
       technologies: ["Python", "HuggingFace Transformers", "Streamlit", "NLP"],
       deployment: ["Flask", "Hugging Face"],
       metrics: [
-        { value: 78, label: "Content Reduction", positive: true },
-        { value: 60, label: "User Interaction ↑", positive: true }
+        { value: 78, label: "Content Reduction", suffix: "%" },
+        { value: 60, label: "User Interaction ↑", suffix: "%" }
       ],
       features: ["Automatic video transcription", "AI-powered summarization", "Interactive chatbot", "Real-time processing"],
       architecture: {
@@ -118,8 +97,8 @@ const Projects = () => {
       technologies: ["MediaPipe", "OpenCV", "TensorFlow", "Deep Learning"],
       deployment: ["OpenCV", "Zoom/TTS API Integration"],
       metrics: [
-        { value: 88, label: "Accuracy", positive: true },
-        { value: 22, label: "Error Reduction", positive: true }
+        { value: 88, label: "Accuracy", suffix: "%" },
+        { value: 22, label: "Error Reduction", suffix: "%" }
       ],
       liveMetrics: { interactions: 20, accuracy: 88 },
       features: ["Real-time gesture recognition", "Hand landmark detection", "Deep learning classification", "TTS Output"],
@@ -142,17 +121,16 @@ const Projects = () => {
 
   return (
     <section id="projects" className="section-padding px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <div className="absolute inset-0 pattern-dots opacity-20" />
-      <div className="gradient-orb w-[400px] h-[400px] bg-primary/10 top-20 right-0" />
+      <div className="absolute inset-0 pattern-dots opacity-10" />
       
       <div className="max-w-7xl mx-auto relative z-10">
         <ScrollReveal>
-          <div className="text-center mb-16">
+          <div className="text-center mb-20">
             <Badge variant="outline" className="mb-4 px-4 py-1.5 border-primary/30 text-primary">
               <Code size={14} className="mr-2" />
               Portfolio
             </Badge>
-            <h2 className="text-4xl md:text-6xl font-extrabold mb-6 display-font">
+            <h2 className="hero-title text-5xl md:text-7xl mb-6">
               Featured <span className="gradient-text">Projects</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -161,196 +139,230 @@ const Projects = () => {
           </div>
         </ScrollReveal>
 
-        {/* Projects Grid - All Uniform */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        {/* Fullscreen-width Project Sections */}
+        <div className="space-y-20">
           {projects.map((project, index) => (
-            <ScrollReveal key={project.id} delay={index * 0.15}>
+            <ScrollReveal key={project.id} delay={index * 0.1}>
               <motion.div
                 onHoverStart={() => setHoveredProject(project.id)}
                 onHoverEnd={() => setHoveredProject(null)}
-                className="h-full"
+                className="relative distortion-container"
               >
-                <Card className="glass-card card-hover group h-full overflow-hidden flex flex-col">
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5"
-                    animate={{ scale: hoveredProject === project.id ? 1.05 : 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <CardHeader className="pb-4 relative z-10">
-                    <div className="flex items-start justify-between mb-4">
-                      <motion.div 
-                        className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${project.color} flex items-center justify-center shadow-lg`}
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        transition={{ type: "spring", stiffness: 400 }}
-                      >
-                        <project.icon size={26} className="text-white" />
-                      </motion.div>
-                      <Badge className="bg-green-500/10 text-green-500 border-green-500/20">
-                        <CheckCircle size={12} className="mr-1" />
-                        {project.status}
-                      </Badge>
-                    </div>
-                    <CardTitle className="text-lg group-hover:text-primary transition-colors leading-tight">
-                      {project.title}
-                    </CardTitle>
-                    <p className="text-muted-foreground text-sm mt-2 line-clamp-3">{project.description}</p>
-                  </CardHeader>
-
-                  <CardContent className="space-y-5 relative z-10 flex-1 flex flex-col">
-                    {/* Live Metrics Ticker for Sign Language Project */}
-                    {project.liveMetrics && (
-                      <div className="p-3 rounded-xl bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/20">
-                        <h4 className="font-medium mb-2 flex items-center gap-2 text-xs text-green-500">
-                          <Activity size={12} className="animate-pulse" />
-                          Live Performance
-                        </h4>
-                        <div className="flex justify-around">
-                          <div className="text-center">
-                            <div className="text-xl font-bold code-font gradient-text">
-                              <AnimatedCounter value={project.liveMetrics.interactions} suffix="+" />
-                            </div>
-                            <span className="text-[10px] text-muted-foreground">Interactions</span>
-                          </div>
-                          <div className="text-center">
-                            <div className="text-xl font-bold code-font gradient-text">
-                              <AnimatedCounter value={project.liveMetrics.accuracy} suffix="%" />
-                            </div>
-                            <span className="text-[10px] text-muted-foreground">Accuracy</span>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Metrics Visualization */}
-                    <div className="p-3 rounded-xl bg-gradient-to-br from-primary/5 to-accent/5 border border-primary/10">
-                      <h4 className="font-medium mb-3 flex items-center gap-2 text-xs">
-                        <Activity size={12} className="text-primary" />
-                        Performance Metrics
-                      </h4>
-                      <div className="flex justify-center gap-4">
-                        {project.metrics.map((metric, i) => (
-                          <MetricRing 
-                            key={i} 
-                            value={metric.value} 
-                            label={metric.label}
-                            color={metric.positive ? "hsl(var(--primary))" : "hsl(var(--destructive))"}
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Deployment Tags */}
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                        <Server size={12} className="text-accent" />
-                        <span className="font-medium">Deploy:</span>
-                      </div>
-                      {project.deployment.map((dep, i) => (
-                        <Badge key={i} className="bg-accent/10 text-accent border-accent/20 text-[10px] px-2 py-0.5">
-                          {dep}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {/* Architecture Dropdown */}
-                    <div className="border border-border/50 rounded-xl overflow-hidden">
-                      <button
-                        onClick={() => setExpandedArchitecture(expandedArchitecture === project.id ? null : project.id)}
-                        className="w-full p-3 flex items-center justify-between bg-secondary/20 hover:bg-secondary/30 transition-colors"
-                      >
-                        <span className="font-medium text-sm flex items-center gap-2">
-                          <Code size={12} className="text-primary" />
-                          System Architecture
-                        </span>
-                        <motion.div
-                          animate={{ rotate: expandedArchitecture === project.id ? 180 : 0 }}
-                          transition={{ duration: 0.2 }}
+                <div className="distortion-overlay" />
+                
+                <div className="glass-card p-8 md:p-12 overflow-hidden">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+                    {/* Left - Project Info */}
+                    <div className="space-y-6">
+                      <div className="flex items-start justify-between">
+                        <motion.div 
+                          className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${project.color} flex items-center justify-center shadow-lg`}
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          transition={{ type: "spring", stiffness: 400 }}
                         >
-                          <ChevronDown size={16} className="text-muted-foreground" />
+                          <project.icon size={28} className="text-white" />
                         </motion.div>
-                      </button>
-                      <motion.div
-                        initial={false}
-                        animate={{ height: expandedArchitecture === project.id ? 'auto' : 0, opacity: expandedArchitecture === project.id ? 1 : 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="p-3 bg-secondary/10 space-y-2">
-                          <div className="flex items-center gap-2 text-xs">
-                            <Badge variant="outline" className="text-[10px] px-1.5 py-0">Input</Badge>
-                            <span className="text-muted-foreground">{project.architecture.input}</span>
-                          </div>
-                          <div className="flex items-start gap-2 flex-wrap">
-                            <Badge variant="outline" className="text-[10px] px-1.5 py-0 shrink-0">Pipeline</Badge>
-                            <div className="flex flex-wrap gap-1">
-                              {project.architecture.processing.map((step, i) => (
-                                <span key={i} className="text-[10px] text-muted-foreground flex items-center">
-                                  {step}
-                                  {i < project.architecture.processing.length - 1 && (
-                                    <span className="mx-1 text-primary">→</span>
-                                  )}
-                                </span>
-                              ))}
+                        <Badge className="bg-green-500/10 text-green-500 border-green-500/20">
+                          <CheckCircle size={12} className="mr-1" />
+                          {project.status}
+                        </Badge>
+                      </div>
+                      
+                      <div>
+                        <motion.h3 
+                          className="text-2xl md:text-3xl font-bold display-font mb-3 cursor-pointer"
+                          whileHover={{ x: 5 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          {project.title}
+                        </motion.h3>
+                        <p className="text-muted-foreground leading-relaxed">{project.description}</p>
+                      </div>
+
+                      {/* Live Metrics Ticker for Sign Language Project */}
+                      {project.liveMetrics && (
+                        <div className="p-4 rounded-xl bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/20">
+                          <h4 className="font-medium mb-3 flex items-center gap-2 text-sm text-green-500">
+                            <Activity size={14} className="animate-pulse" />
+                            Live Performance
+                          </h4>
+                          <div className="flex justify-around">
+                            <div className="text-center">
+                              <div className="text-2xl font-bold code-font gradient-text">
+                                <AnimatedCounter value={project.liveMetrics.interactions} suffix="+" />
+                              </div>
+                              <span className="text-xs text-muted-foreground">Interactions</span>
+                            </div>
+                            <div className="text-center">
+                              <div className="text-2xl font-bold code-font gradient-text">
+                                <AnimatedCounter value={project.liveMetrics.accuracy} suffix="%" />
+                              </div>
+                              <span className="text-xs text-muted-foreground">Accuracy</span>
                             </div>
                           </div>
-                          <div className="flex items-center gap-2 text-xs">
-                            <Badge variant="outline" className="text-[10px] px-1.5 py-0">Output</Badge>
-                            <span className="text-muted-foreground">{project.architecture.output}</span>
-                          </div>
                         </div>
-                      </motion.div>
-                    </div>
+                      )}
 
-                    {/* Technologies */}
-                    <div className="flex-1">
-                      <h4 className="font-medium mb-2 flex items-center gap-2 text-sm">
-                        <Zap size={12} className="text-primary" />
-                        Technologies
-                      </h4>
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.technologies.map((tech, i) => (
-                          <GlowingChip key={i}>{tech}</GlowingChip>
+                      {/* Technologies */}
+                      <div>
+                        <h4 className="font-medium mb-3 flex items-center gap-2 text-sm">
+                          <Zap size={14} className="text-primary" />
+                          Technologies
+                        </h4>
+                        <div className="flex flex-wrap gap-2">
+                          {project.technologies.map((tech, i) => (
+                            <motion.div
+                              key={i}
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              whileInView={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: i * 0.1 }}
+                              viewport={{ once: true }}
+                            >
+                              <GlowingChip>{tech}</GlowingChip>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Deployment Tags */}
+                      <div className="flex items-center gap-3 flex-wrap">
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <Server size={14} className="text-accent" />
+                          <span className="font-medium">Deploy:</span>
+                        </div>
+                        {project.deployment.map((dep, i) => (
+                          <Badge key={i} className="bg-accent/10 text-accent border-accent/20 text-xs">
+                            {dep}
+                          </Badge>
                         ))}
+                      </div>
+
+                      {/* Actions */}
+                      <div className="flex gap-3 pt-4">
+                        <Button onClick={handleViewCode} variant="outline" className="flex-1 btn-outline">
+                          <Github size={16} className="mr-2" />
+                          Explore Code
+                        </Button>
+                        <Button onClick={() => handleLiveDemo(project.title)} className="flex-1 btn-primary">
+                          <ExternalLink size={16} className="mr-2" />
+                          View Live
+                        </Button>
                       </div>
                     </div>
 
-                    {/* Actions with slide-in effect */}
-                    <div className="flex gap-2 pt-2 mt-auto">
-                      <motion.div 
-                        className="flex-1"
-                        initial={{ x: -20, opacity: 0.7 }}
-                        animate={{ x: hoveredProject === project.id ? 0 : -5, opacity: hoveredProject === project.id ? 1 : 0.7 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Button onClick={handleViewCode} variant="outline" size="sm" className="w-full text-xs">
-                          <Github size={14} className="mr-1.5" />
-                          View Code
-                        </Button>
-                      </motion.div>
-                      <Button onClick={() => handleLiveDemo(project.title)} size="sm" className="flex-1 btn-primary text-xs">
-                        <ExternalLink size={14} className="mr-1.5" />
-                        Live Demo
-                      </Button>
+                    {/* Right - Metrics & Architecture */}
+                    <div className="space-y-6">
+                      {/* Large Metrics Display */}
+                      <div className="accent-metric">
+                        <h4 className="font-medium mb-6 flex items-center gap-2 text-sm text-center justify-center">
+                          <Activity size={14} className="text-primary" />
+                          Performance Metrics
+                        </h4>
+                        <div className="grid grid-cols-2 gap-6">
+                          {project.metrics.map((metric, i) => (
+                            <MetricLarge 
+                              key={i} 
+                              value={metric.value} 
+                              label={metric.label}
+                              suffix={metric.suffix}
+                            />
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Architecture - Glassmorphic Modal Style */}
+                      <div className="glass-card rounded-xl overflow-hidden">
+                        <button
+                          onClick={() => setExpandedArchitecture(expandedArchitecture === project.id ? null : project.id)}
+                          className="w-full p-4 flex items-center justify-between hover:bg-primary/5 transition-colors"
+                        >
+                          <span className="font-medium text-sm flex items-center gap-2">
+                            <Code size={14} className="text-primary" />
+                            View Pipeline
+                          </span>
+                          <motion.span
+                            animate={{ rotate: expandedArchitecture === project.id ? 45 : 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="text-muted-foreground"
+                          >
+                            +
+                          </motion.span>
+                        </button>
+                        
+                        <AnimatePresence>
+                          {expandedArchitecture === project.id && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.3 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="p-4 pt-0 space-y-4">
+                                {/* Step 1: Input */}
+                                <motion.div 
+                                  className="flex items-center gap-3"
+                                  initial={{ x: -20, opacity: 0 }}
+                                  animate={{ x: 0, opacity: 1 }}
+                                  transition={{ delay: 0.1 }}
+                                >
+                                  <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-bold text-primary">1</span>
+                                  <div>
+                                    <p className="text-xs text-muted-foreground">Input</p>
+                                    <p className="text-sm font-medium">{project.architecture.input}</p>
+                                  </div>
+                                </motion.div>
+
+                                {/* Processing Steps */}
+                                {project.architecture.processing.map((step, i) => (
+                                  <motion.div 
+                                    key={i}
+                                    className="flex items-center gap-3"
+                                    initial={{ x: -20, opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    transition={{ delay: 0.1 + (i + 1) * 0.1 }}
+                                  >
+                                    <span className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-xs font-bold text-accent">{i + 2}</span>
+                                    <p className="text-sm font-medium">{step}</p>
+                                  </motion.div>
+                                ))}
+
+                                {/* Output */}
+                                <motion.div 
+                                  className="flex items-center gap-3"
+                                  initial={{ x: -20, opacity: 0 }}
+                                  animate={{ x: 0, opacity: 1 }}
+                                  transition={{ delay: 0.1 + (project.architecture.processing.length + 1) * 0.1 }}
+                                >
+                                  <span className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center text-xs font-bold text-green-500">✓</span>
+                                  <div>
+                                    <p className="text-xs text-muted-foreground">Output</p>
+                                    <p className="text-sm font-medium">{project.architecture.output}</p>
+                                  </div>
+                                </motion.div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </motion.div>
             </ScrollReveal>
           ))}
         </div>
 
         {/* Stats */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
           {stats.map((stat, index) => (
             <ScrollReveal key={index} delay={index * 0.1}>
-              <Card className="glass-card card-hover text-center">
-                <CardContent className="p-8">
-                  <div className="text-4xl font-bold gradient-text mb-2 code-font">
-                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                  </div>
-                  <p className="text-muted-foreground">{stat.label}</p>
-                </CardContent>
-              </Card>
+              <div className="accent-metric text-center">
+                <div className="text-5xl md:text-6xl font-bold gradient-text mb-3 code-font">
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                </div>
+                <p className="text-muted-foreground uppercase tracking-widest text-sm">{stat.label}</p>
+              </div>
             </ScrollReveal>
           ))}
         </div>

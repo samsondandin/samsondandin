@@ -56,7 +56,7 @@ const Skills = () => {
       skills: [
         { name: "Python", highlight: false },
         { name: "SQL", highlight: false },
-        { name: "Java", highlight: true, tag: "Core" },
+        { name: "Java", highlight: false },
         { name: "C", highlight: false }
       ],
       color: "from-blue-500 to-cyan-500"
@@ -145,7 +145,7 @@ const Skills = () => {
                       <GlowingChip 
                         key={skillIndex} 
                         highlight={skill.highlight}
-                        tag={skill.highlight ? skill.tag : undefined}
+                        tag={skill.highlight && 'tag' in skill ? (skill as { tag: string }).tag : undefined}
                       >
                         {skill.name}
                       </GlowingChip>
