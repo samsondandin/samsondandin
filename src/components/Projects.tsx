@@ -1,12 +1,13 @@
 import { useState, useRef } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { motion, AnimatePresence, useInView, useScroll, useTransform } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github, Youtube, Eye, Code, Zap, CheckCircle, Server, X, Activity, Image } from 'lucide-react';
-import ScrollReveal from '@/components/ui/ScrollReveal';
+import { ExternalLink, Github, Youtube, Eye, Code, Zap, CheckCircle, Server, Activity, Image } from 'lucide-react';
 import AnimatedCounter from '@/components/ui/AnimatedCounter';
 import GlowingChip from '@/components/ui/GlowingChip';
+import TextScramble from '@/components/ui/TextScramble';
+import FrostedCard from '@/components/ui/FrostedCard';
+import ParallaxContainer from '@/components/ui/ParallaxContainer';
 
 const MetricLarge = ({ value, label, suffix = "%" }: { value: number; label: string; suffix?: string }) => {
   const ref = useRef(null);
@@ -20,17 +21,22 @@ const MetricLarge = ({ value, label, suffix = "%" }: { value: number; label: str
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
     >
-      <span className="metric-large gradient-text">
+      <span className="metric-large gradient-text-ice">
         {isInView && <AnimatedCounter value={value} suffix={suffix} duration={2000} />}
       </span>
-      <p className="text-sm text-muted-foreground mt-2 uppercase tracking-widest">{label}</p>
+      <p className="text-sm text-muted-foreground mt-2 font-mono-label">{label}</p>
     </motion.div>
   );
 };
 
 const Projects = () => {
   const [expandedArchitecture, setExpandedArchitecture] = useState<string | null>(null);
-  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
 
   const handleViewCode = () => {
     window.open('https://github.com/samsondandin?tab=repositories', '_blank', 'noopener,noreferrer');
@@ -65,8 +71,7 @@ const Projects = () => {
         output: "Optimized Gallery"
       },
       icon: Image,
-      color: "from-purple-500 to-pink-500",
-      status: "Completed"
+      color: "from-primary to-accent"
     },
     {
       id: "summify",
@@ -86,8 +91,7 @@ const Projects = () => {
         output: "Summarized Content + Q&A"
       },
       icon: Youtube,
-      color: "from-red-500 to-pink-500",
-      status: "Completed"
+      color: "from-accent to-primary"
     },
     {
       id: "sign-language",
@@ -108,8 +112,7 @@ const Projects = () => {
         output: "Text/Speech Output"
       },
       icon: Eye,
-      color: "from-blue-500 to-cyan-500",
-      status: "Completed"
+      color: "from-primary to-primary/50"
     }
   ];
 
@@ -120,84 +123,96 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="section-padding px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <div className="absolute inset-0 pattern-dots opacity-10" />
+    <section ref={sectionRef} id="projects" className="section-padding px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 pattern-dots opacity-30" />
+      
+      {/* Ambient light */}
+      <div className="absolute top-1/3 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px]" />
+      <div className="absolute bottom-1/3 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[120px]" />
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <ScrollReveal>
-          <div className="text-center mb-20">
-            <Badge variant="outline" className="mb-4 px-4 py-1.5 border-primary/30 text-primary">
-              <Code size={14} className="mr-2" />
-              Portfolio
-            </Badge>
-            <h2 className="hero-title text-5xl md:text-7xl mb-6">
-              Featured <span className="gradient-text">Projects</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Real-world applications of AI/ML technologies solving meaningful problems
-            </p>
-          </div>
-        </ScrollReveal>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-20"
+        >
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full frosted-glass text-sm text-primary font-mono-label mb-6">
+            <Code size={14} />
+            Portfolio
+          </span>
+          <h2 className="hero-title text-5xl md:text-7xl mb-6">
+            <TextScramble delay={200}>Featured</TextScramble>{' '}
+            <span className="gradient-text-ice">
+              <TextScramble delay={400}>Projects</TextScramble>
+            </span>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Real-world applications of AI/ML technologies solving meaningful problems
+          </p>
+        </motion.div>
 
-        {/* Fullscreen-width Project Sections */}
-        <div className="space-y-20">
+        {/* Floating Bento-style Projects */}
+        <div className="space-y-12">
           {projects.map((project, index) => (
-            <ScrollReveal key={project.id} delay={index * 0.1}>
+            <ParallaxContainer key={project.id} speed={index % 2 === 0 ? -0.05 : 0.05}>
               <motion.div
-                onHoverStart={() => setHoveredProject(project.id)}
-                onHoverEnd={() => setHoveredProject(null)}
-                className="relative distortion-container"
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="distortion-overlay" />
-                
-                <div className="glass-card p-8 md:p-12 overflow-hidden">
+                <FrostedCard className="p-8 md:p-12 overflow-hidden" glow="ice">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
                     {/* Left - Project Info */}
                     <div className="space-y-6">
                       <div className="flex items-start justify-between">
                         <motion.div 
-                          className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${project.color} flex items-center justify-center shadow-lg`}
+                          className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${project.color} flex items-center justify-center`}
                           whileHover={{ scale: 1.1, rotate: 5 }}
                           transition={{ type: "spring", stiffness: 400 }}
+                          style={{ boxShadow: '0 0 40px hsl(var(--primary) / 0.3)' }}
                         >
-                          <project.icon size={28} className="text-white" />
+                          <project.icon size={28} className="text-background" />
                         </motion.div>
-                        <Badge className="bg-green-500/10 text-green-500 border-green-500/20">
+                        <Badge className="bg-primary/10 text-primary border-primary/20 font-mono-label">
                           <CheckCircle size={12} className="mr-1" />
-                          {project.status}
+                          Completed
                         </Badge>
                       </div>
                       
                       <div>
                         <motion.h3 
-                          className="text-2xl md:text-3xl font-bold display-font mb-3 cursor-pointer"
+                          className="text-2xl md:text-3xl font-bold font-display mb-3 cursor-pointer"
                           whileHover={{ x: 5 }}
                           transition={{ type: "spring", stiffness: 300 }}
                         >
-                          {project.title}
+                          <TextScramble scrambleOnHover>{project.title}</TextScramble>
                         </motion.h3>
                         <p className="text-muted-foreground leading-relaxed">{project.description}</p>
                       </div>
 
-                      {/* Live Metrics Ticker for Sign Language Project */}
+                      {/* Live Metrics Ticker */}
                       {project.liveMetrics && (
-                        <div className="p-4 rounded-xl bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/20">
-                          <h4 className="font-medium mb-3 flex items-center gap-2 text-sm text-green-500">
+                        <div className="p-4 rounded-xl frosted-glass border border-primary/20">
+                          <h4 className="font-medium mb-3 flex items-center gap-2 text-sm text-primary font-mono-label">
                             <Activity size={14} className="animate-pulse" />
                             Live Performance
                           </h4>
                           <div className="flex justify-around">
                             <div className="text-center">
-                              <div className="text-2xl font-bold code-font gradient-text">
+                              <div className="text-2xl font-bold code-font gradient-text-ice">
                                 <AnimatedCounter value={project.liveMetrics.interactions} suffix="+" />
                               </div>
-                              <span className="text-xs text-muted-foreground">Interactions</span>
+                              <span className="text-xs text-muted-foreground font-mono-label">Interactions</span>
                             </div>
                             <div className="text-center">
-                              <div className="text-2xl font-bold code-font gradient-text">
+                              <div className="text-2xl font-bold code-font gradient-text-ice">
                                 <AnimatedCounter value={project.liveMetrics.accuracy} suffix="%" />
                               </div>
-                              <span className="text-xs text-muted-foreground">Accuracy</span>
+                              <span className="text-xs text-muted-foreground font-mono-label">Accuracy</span>
                             </div>
                           </div>
                         </div>
@@ -205,7 +220,7 @@ const Projects = () => {
 
                       {/* Technologies */}
                       <div>
-                        <h4 className="font-medium mb-3 flex items-center gap-2 text-sm">
+                        <h4 className="font-medium mb-3 flex items-center gap-2 text-sm font-mono-label">
                           <Zap size={14} className="text-primary" />
                           Technologies
                         </h4>
@@ -226,12 +241,12 @@ const Projects = () => {
 
                       {/* Deployment Tags */}
                       <div className="flex items-center gap-3 flex-wrap">
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground font-mono-label">
                           <Server size={14} className="text-accent" />
-                          <span className="font-medium">Deploy:</span>
+                          <span>Deploy:</span>
                         </div>
                         {project.deployment.map((dep, i) => (
-                          <Badge key={i} className="bg-accent/10 text-accent border-accent/20 text-xs">
+                          <Badge key={i} className="bg-accent/10 text-accent border-accent/20 text-xs font-mono">
                             {dep}
                           </Badge>
                         ))}
@@ -254,7 +269,7 @@ const Projects = () => {
                     <div className="space-y-6">
                       {/* Large Metrics Display */}
                       <div className="accent-metric">
-                        <h4 className="font-medium mb-6 flex items-center gap-2 text-sm text-center justify-center">
+                        <h4 className="font-medium mb-6 flex items-center gap-2 text-sm text-center justify-center font-mono-label">
                           <Activity size={14} className="text-primary" />
                           Performance Metrics
                         </h4>
@@ -270,13 +285,13 @@ const Projects = () => {
                         </div>
                       </div>
 
-                      {/* Architecture - Glassmorphic Modal Style */}
-                      <div className="glass-card rounded-xl overflow-hidden">
+                      {/* Architecture - Glassmorphic Accordion */}
+                      <FrostedCard className="rounded-xl overflow-hidden" hover={false}>
                         <button
                           onClick={() => setExpandedArchitecture(expandedArchitecture === project.id ? null : project.id)}
                           className="w-full p-4 flex items-center justify-between hover:bg-primary/5 transition-colors"
                         >
-                          <span className="font-medium text-sm flex items-center gap-2">
+                          <span className="font-medium text-sm flex items-center gap-2 font-mono-label">
                             <Code size={14} className="text-primary" />
                             View Pipeline
                           </span>
@@ -306,9 +321,9 @@ const Projects = () => {
                                   animate={{ x: 0, opacity: 1 }}
                                   transition={{ delay: 0.1 }}
                                 >
-                                  <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-bold text-primary">1</span>
+                                  <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-bold text-primary code-font">1</span>
                                   <div>
-                                    <p className="text-xs text-muted-foreground">Input</p>
+                                    <p className="text-xs text-muted-foreground font-mono-label">Input</p>
                                     <p className="text-sm font-medium">{project.architecture.input}</p>
                                   </div>
                                 </motion.div>
@@ -322,7 +337,7 @@ const Projects = () => {
                                     animate={{ x: 0, opacity: 1 }}
                                     transition={{ delay: 0.1 + (i + 1) * 0.1 }}
                                   >
-                                    <span className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-xs font-bold text-accent">{i + 2}</span>
+                                    <span className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-xs font-bold text-accent code-font">{i + 2}</span>
                                     <p className="text-sm font-medium">{step}</p>
                                   </motion.div>
                                 ))}
@@ -334,9 +349,9 @@ const Projects = () => {
                                   animate={{ x: 0, opacity: 1 }}
                                   transition={{ delay: 0.1 + (project.architecture.processing.length + 1) * 0.1 }}
                                 >
-                                  <span className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center text-xs font-bold text-green-500">✓</span>
+                                  <span className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-xs font-bold text-primary">✓</span>
                                   <div>
-                                    <p className="text-xs text-muted-foreground">Output</p>
+                                    <p className="text-xs text-muted-foreground font-mono-label">Output</p>
                                     <p className="text-sm font-medium">{project.architecture.output}</p>
                                   </div>
                                 </motion.div>
@@ -344,28 +359,32 @@ const Projects = () => {
                             </motion.div>
                           )}
                         </AnimatePresence>
-                      </div>
+                      </FrostedCard>
                     </div>
                   </div>
-                </div>
+                </FrostedCard>
               </motion.div>
-            </ScrollReveal>
+            </ParallaxContainer>
           ))}
         </div>
 
         {/* Stats */}
-        <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
           {stats.map((stat, index) => (
-            <ScrollReveal key={index} delay={index * 0.1}>
-              <div className="accent-metric text-center">
-                <div className="text-5xl md:text-6xl font-bold gradient-text mb-3 code-font">
-                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                </div>
-                <p className="text-muted-foreground uppercase tracking-widest text-sm">{stat.label}</p>
+            <FrostedCard key={index} className="p-8 text-center" glow="ice">
+              <div className="text-5xl md:text-6xl font-bold gradient-text-ice mb-3 code-font">
+                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </div>
-            </ScrollReveal>
+              <p className="text-muted-foreground font-mono-label">{stat.label}</p>
+            </FrostedCard>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
