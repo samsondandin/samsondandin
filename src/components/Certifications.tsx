@@ -1,6 +1,8 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Award, Trophy, Users, Heart, Megaphone, Shield, Calendar, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Award, Trophy, Users, Heart, Megaphone, Shield, Calendar } from 'lucide-react';
+import SpotlightCard from '@/components/ui/SpotlightCard';
+import TextScramble from '@/components/ui/TextScramble';
+import GlassChip from '@/components/ui/GlassChip';
 
 const Certifications = () => {
   const certifications = [
@@ -8,29 +10,25 @@ const Certifications = () => {
       title: "Oracle Cloud Infrastructure 2025 AI Foundations Associate",
       issuer: "Oracle",
       year: "2025",
-      category: "AI Foundations",
-      color: "from-red-500 to-orange-500"
+      category: "AI Foundations"
     },
     {
       title: "Cloud Technologies",
       issuer: "Infosys Springboard",
       year: "2025",
-      category: "Cloud Computing",
-      color: "from-blue-500 to-cyan-500"
+      category: "Cloud Computing"
     },
     {
       title: "Explore Machine Learning using Python",
       issuer: "Infosys Springboard",
       year: "2024",
-      category: "Machine Learning",
-      color: "from-green-500 to-emerald-500"
+      category: "Machine Learning"
     },
     {
       title: "Programming using Java",
       issuer: "Infosys Springboard",
       year: "2024",
-      category: "Programming",
-      color: "from-orange-500 to-red-500"
+      category: "Programming"
     }
   ];
 
@@ -41,108 +39,133 @@ const Certifications = () => {
   ];
 
   const communityWork = [
-    { title: "Blood Donation Drives", description: "Organized multiple campaigns", icon: Heart, color: "text-red-500" },
-    { title: "Tobacco Awareness", description: "Led awareness campaigns", icon: Megaphone, color: "text-orange-500" },
-    { title: "Cancer Awareness", description: "Promoted early detection", icon: Shield, color: "text-pink-500" }
+    { title: "Blood Donation Drives", description: "Organized multiple campaigns", icon: Heart },
+    { title: "Tobacco Awareness", description: "Led awareness campaigns", icon: Megaphone },
+    { title: "Cancer Awareness", description: "Promoted early detection", icon: Shield }
   ];
 
   return (
-    <section id="certifications" className="section-padding px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-secondary/5">
+    <section id="certifications" className="section-padding px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#050505' }}>
       {/* Background */}
       <div className="absolute inset-0 pattern-dots opacity-20" />
-      <div className="gradient-orb w-[400px] h-[400px] bg-accent/10 bottom-0 left-0" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[150px]" />
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4 px-4 py-1.5 border-primary/30 text-primary">
-            <Award size={14} className="mr-2" />
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full spotlight-glass text-sm text-primary font-mono-label mb-6">
+            <Award size={14} />
             Recognition
-          </Badge>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 display-font">
-            Certifications & <span className="gradient-text">Achievements</span>
+          </span>
+          <h2 className="hero-title text-5xl md:text-7xl mb-6">
+            <TextScramble delay={200}>Certifications &</TextScramble>{' '}
+            <span className="gradient-text">
+              <TextScramble delay={400}>Achievements</TextScramble>
+            </span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Continuous learning and community impact through various initiatives
           </p>
-        </div>
+        </motion.div>
 
         {/* Certifications */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold mb-8 text-center display-font flex items-center justify-center gap-2">
-            <Star size={20} className="text-primary" />
+          <h3 className="text-2xl font-bold mb-8 text-center font-display flex items-center justify-center gap-2">
+            <Award size={20} className="text-primary" />
             Professional Certifications
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {certifications.map((cert, index) => (
-              <Card key={index} className="glass-card card-hover group">
-                <CardHeader className="pb-4">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <SpotlightCard className="p-6">
                   <div className="flex items-start gap-4">
-                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${cert.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <Award size={24} className="text-white" />
+                    <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                      <Award size={24} className="text-primary" />
                     </div>
                     <div className="flex-1">
-                      <CardTitle className="text-lg mb-2 group-hover:text-primary transition-colors">{cert.title}</CardTitle>
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <Badge variant="secondary" className="text-xs">{cert.category}</Badge>
+                      <h4 className="font-bold mb-2 font-display">{cert.title}</h4>
+                      <div className="flex items-center gap-2 flex-wrap mb-2">
+                        <GlassChip variant="primary">{cert.category}</GlassChip>
                         <span className="text-sm text-muted-foreground code-font flex items-center gap-1">
                           <Calendar size={12} />
                           {cert.year}
                         </span>
                       </div>
+                      <p className="text-sm text-muted-foreground">Issued by <span className="text-foreground font-medium">{cert.issuer}</span></p>
                     </div>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">Issued by <span className="text-foreground font-medium">{cert.issuer}</span></p>
-                </CardContent>
-              </Card>
+                </SpotlightCard>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* Achievements */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold mb-8 text-center display-font flex items-center justify-center gap-2">
-            <Trophy size={20} className="text-amber-500" />
+          <h3 className="text-2xl font-bold mb-8 text-center font-display flex items-center justify-center gap-2">
+            <Trophy size={20} className="text-accent" />
             Competition Achievements
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {achievements.map((achievement, index) => (
-              <Card key={index} className="glass-card card-hover text-center group animate-scale-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                <CardContent className="p-8">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <SpotlightCard className="p-8 text-center" spotlightColor={achievement.place === "1st" ? "rgba(251, 191, 36, 0.1)" : "rgba(148, 163, 184, 0.1)"}>
                   <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center ${
                     achievement.place === "1st" 
-                      ? 'bg-gradient-to-br from-amber-400 to-yellow-500' 
-                      : 'bg-gradient-to-br from-slate-300 to-slate-400'
-                  } shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                    <Trophy size={28} className="text-white" />
+                      ? 'bg-accent/10 border border-accent/20' 
+                      : 'bg-muted/20 border border-muted/30'
+                  }`}>
+                    <Trophy size={28} className={achievement.place === "1st" ? "text-accent" : "text-muted-foreground"} />
                   </div>
-                  <h4 className="font-semibold mb-2 group-hover:text-primary transition-colors">{achievement.title}</h4>
-                  <Badge variant="outline" className="border-primary/30">{achievement.semester}</Badge>
-                </CardContent>
-              </Card>
+                  <h4 className="font-semibold mb-2 font-display">{achievement.title}</h4>
+                  <GlassChip>{achievement.semester}</GlassChip>
+                </SpotlightCard>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* Community Work */}
         <div>
-          <h3 className="text-2xl font-bold mb-8 text-center display-font flex items-center justify-center gap-2">
+          <h3 className="text-2xl font-bold mb-8 text-center font-display flex items-center justify-center gap-2">
             <Users size={20} className="text-primary" />
             Community Involvement
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {communityWork.map((work, index) => (
-              <Card key={index} className="glass-card card-hover text-center group animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                <CardContent className="p-8">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-red-500/10 to-pink-500/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <work.icon size={28} className={work.color} />
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <SpotlightCard className="p-8 text-center">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-destructive/10 border border-destructive/20 flex items-center justify-center">
+                    <work.icon size={28} className="text-destructive" />
                   </div>
-                  <h4 className="font-semibold mb-2 group-hover:text-primary transition-colors">{work.title}</h4>
+                  <h4 className="font-semibold mb-2 font-display">{work.title}</h4>
                   <p className="text-sm text-muted-foreground">{work.description}</p>
-                </CardContent>
-              </Card>
+                </SpotlightCard>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -155,12 +178,18 @@ const Certifications = () => {
             { value: "3", label: "Community Initiatives" },
             { value: "2024-25", label: "Active Years" },
           ].map((stat, index) => (
-            <Card key={index} className="glass-card text-center animate-scale-in" style={{ animationDelay: `${index * 0.1}s` }}>
-              <CardContent className="p-6">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <SpotlightCard className="p-6 text-center">
                 <div className="text-2xl font-bold gradient-text code-font">{stat.value}</div>
                 <p className="text-xs text-muted-foreground mt-1">{stat.label}</p>
-              </CardContent>
-            </Card>
+              </SpotlightCard>
+            </motion.div>
           ))}
         </div>
       </div>

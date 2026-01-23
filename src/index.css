@@ -1,77 +1,63 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Igloo.inc Inspired - Void Black & Ice Blue Aesthetic */
+/* Void Intelligence Theme - Deep Black (#050505) */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
-    --primary: 187 71% 59%;
-    --primary-foreground: 0 0% 4%;
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 10%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 262 83% 58%;
-    --accent-foreground: 0 0% 98%;
+    /* Light mode - same as dark for this theme */
+    --background: 0 0% 2%;
+    --foreground: 0 0% 88%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 88%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 88%;
+    /* Electric Cyan accent #22d3ee */
+    --primary: 187 94% 51%;
+    --primary-foreground: 0 0% 2%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 88%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 187 94% 51%;
+    --accent-foreground: 0 0% 2%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 187 71% 59%;
+    --border: 0 0% 12%;
+    --input: 0 0% 12%;
+    --ring: 187 94% 51%;
     --radius: 0.75rem;
     
-    /* Ice theme colors */
-    --ice-blue: 187 71% 59%;
-    --ice-glow: 187 80% 65%;
-    --ice-border: 0 0% 20%;
-    --void-black: 0 0% 4%;
-    --silver: 0 0% 88%;
-    --chromatic-red: 0 100% 60%;
-    --chromatic-cyan: 187 100% 60%;
+    /* Custom tokens */
+    --void-black: 0 0% 2%;
+    --soft-silver: 0 0% 88%;
+    --electric-cyan: 187 94% 51%;
+    --glow-cyan: 0 0 60px hsl(187 94% 51% / 0.3);
   }
 
   .dark {
-    /* Void Black - #0a0a0a */
-    --background: 0 0% 4%;
+    --background: 0 0% 2%;
     --foreground: 0 0% 88%;
-    --card: 0 0% 6%;
+    --card: 0 0% 4%;
     --card-foreground: 0 0% 88%;
-    --popover: 0 0% 6%;
+    --popover: 0 0% 4%;
     --popover-foreground: 0 0% 88%;
-    /* Ice Blue accent */
-    --primary: 187 71% 59%;
-    --primary-foreground: 0 0% 4%;
+    --primary: 187 94% 51%;
+    --primary-foreground: 0 0% 2%;
     --secondary: 0 0% 8%;
     --secondary-foreground: 0 0% 88%;
-    --muted: 0 0% 10%;
+    --muted: 0 0% 12%;
     --muted-foreground: 0 0% 55%;
-    --accent: 262 83% 58%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 72% 51%;
+    --accent: 187 94% 51%;
+    --accent-foreground: 0 0% 2%;
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 12%;
-    --input: 0 0% 8%;
-    --ring: 187 71% 59%;
-    
-    /* Ice theme colors */
-    --ice-blue: 187 71% 59%;
-    --ice-glow: 187 80% 70%;
-    --ice-border: 0 0% 100% / 0.08;
-    --void-black: 0 0% 4%;
-    --silver: 0 0% 88%;
-    
-    /* Glow effects */
-    --glow-ice: 0 0 80px hsl(187 71% 59% / 0.2);
-    --glow-purple: 0 0 80px hsl(262 83% 58% / 0.2);
+    --input: 0 0% 12%;
+    --ring: 187 94% 51%;
   }
 }
 
@@ -82,15 +68,15 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
-    background-color: hsl(0 0% 4%);
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #050505;
   }
 
   html {
-    scroll-behavior: auto; /* Lenis handles smooth scrolling */
+    scroll-behavior: auto;
   }
 
-  /* Custom scrollbar - Minimal */
+  /* Minimal scrollbar */
   ::-webkit-scrollbar {
     width: 4px;
     height: 4px;
@@ -117,29 +103,38 @@
 }
 
 @layer components {
-  /* Typography - Monospace for labels, Sans for headlines */
+  /* Headlines - Inter, tracking-tight, bold */
+  .font-display {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Labels/Code - JetBrains Mono, text-xs, tracking-widest, uppercase */
   .font-mono-label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
-
-  .font-display {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-  }
-
+  
   .hero-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 800;
     letter-spacing: -0.04em;
-    line-height: 0.9;
+    line-height: 0.95;
   }
 
   .code-font {
     font-family: 'JetBrains Mono', monospace;
+  }
+  
+  /* Spotlight Card Glassmorphism */
+  .spotlight-glass {
+    background: hsl(0 0% 100% / 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid hsl(0 0% 100% / 0.1);
   }
 
   /* Frosted Ice Glassmorphism */
@@ -185,10 +180,10 @@
     border-bottom: 1px solid hsl(0 0% 100% / 0.05);
   }
 
-  /* Ice Gradient Text */
+  /* Cyan Gradient Text */
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(187 90% 75%) 50%, hsl(262 83% 70%) 100%);
+    background-image: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(187 90% 75%) 100%);
   }
 
   .gradient-text-ice {

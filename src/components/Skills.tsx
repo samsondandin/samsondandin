@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Code, Database, Brain, Wrench, Users, Sparkles, Cpu } from 'lucide-react';
-import ScrollReveal from '@/components/ui/ScrollReveal';
-import GlowingChip from '@/components/ui/GlowingChip';
+import SpotlightCard from '@/components/ui/SpotlightCard';
+import TextScramble from '@/components/ui/TextScramble';
+import GlassChip from '@/components/ui/GlassChip';
 
 const Skills = () => {
   const skillCategories = [
@@ -11,163 +10,133 @@ const Skills = () => {
       icon: Brain,
       title: "Core AI",
       size: "lg",
-      skills: [
-        { name: "CNNs", highlight: false },
-        { name: "RAG", highlight: false },
-        { name: "LLMs", highlight: false },
-        { name: "Model Deployment", highlight: false },
-        { name: "NLP", highlight: false },
-        { name: "Transformers", highlight: false }
-      ],
-      color: "from-purple-500 to-pink-500"
+      skills: ["CNNs", "RAG", "LLMs", "Model Deployment", "NLP", "Transformers"]
     },
     {
       icon: Wrench,
       title: "MLOps & Tools",
       size: "md",
-      skills: [
-        { name: "Docker", highlight: false },
-        { name: "Git", highlight: false },
-        { name: "Google Colab", highlight: false },
-        { name: "Jupyter Notebook", highlight: false },
-        { name: "VSCode", highlight: false },
-        { name: "Streamlit", highlight: false }
-      ],
-      color: "from-green-500 to-emerald-500"
+      skills: ["Docker", "Git", "Google Colab", "Jupyter", "VSCode", "Streamlit"]
     },
     {
       icon: Database,
       title: "Frameworks",
       size: "md",
-      skills: [
-        { name: "TensorFlow", highlight: false },
-        { name: "Keras", highlight: false },
-        { name: "HuggingFace", highlight: false },
-        { name: "Scikit-learn", highlight: false },
-        { name: "NumPy", highlight: false },
-        { name: "Pandas", highlight: false }
-      ],
-      color: "from-orange-500 to-red-500"
+      skills: ["TensorFlow", "Keras", "HuggingFace", "Scikit-learn", "NumPy", "Pandas"]
     },
     {
       icon: Code,
-      title: "Programming Languages",
+      title: "Languages",
       size: "sm",
-      skills: [
-        { name: "Python", highlight: false },
-        { name: "SQL", highlight: false },
-        { name: "Java", highlight: false },
-        { name: "C", highlight: false }
-      ],
-      color: "from-blue-500 to-cyan-500"
+      skills: ["Python", "SQL", "C"]
     },
     {
       icon: Cpu,
-      title: "ML/DL Concepts",
+      title: "ML Concepts",
       size: "sm",
-      skills: [
-        { name: "Regression", highlight: false },
-        { name: "KNN", highlight: false },
-        { name: "K-Means", highlight: false },
-        { name: "Object Detection", highlight: false }
-      ],
-      color: "from-amber-500 to-orange-500"
+      skills: ["Regression", "KNN", "K-Means", "Object Detection"]
     },
     {
       icon: Users,
       title: "Soft Skills",
       size: "sm",
-      skills: [
-        { name: "Leadership", highlight: false },
-        { name: "Communication", highlight: false },
-        { name: "Teamwork", highlight: false },
-        { name: "Critical Thinking", highlight: false }
-      ],
-      color: "from-teal-500 to-cyan-500"
+      skills: ["Leadership", "Communication", "Teamwork", "Critical Thinking"]
     }
   ];
 
   const stats = [
-    { value: "4+", label: "Core Languages" },
-    { value: "15+", label: "Technologies & Tools" },
-    { value: "10+", label: "AI/ML Concepts" },
+    { value: "3+", label: "Core Languages" },
+    { value: "15+", label: "Technologies" },
+    { value: "10+", label: "AI Concepts" },
   ];
 
   const getSizeClass = (size: string) => {
     switch (size) {
-      case 'lg': return 'bento-lg';
-      case 'md': return 'bento-md';
-      default: return 'bento-sm';
+      case 'lg': return 'col-span-12 md:col-span-8';
+      case 'md': return 'col-span-12 md:col-span-6';
+      default: return 'col-span-12 md:col-span-4';
     }
   };
 
   return (
-    <section id="skills" className="section-padding px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-secondary/5">
+    <section id="skills" className="section-padding px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#050505' }}>
       <div className="absolute inset-0 pattern-grid opacity-20" />
-      <div className="gradient-orb w-[500px] h-[500px] bg-accent/10 -bottom-32 -left-32" />
+      <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px]" />
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <ScrollReveal>
-          <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-4 px-4 py-1.5 border-primary/30 text-primary">
-              <Sparkles size={14} className="mr-2" />
-              Technical Expertise
-            </Badge>
-            <h2 className="text-4xl md:text-6xl font-extrabold mb-6 display-font">
-              Skills & <span className="gradient-text">Technologies</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              A comprehensive toolkit for building intelligent solutions
-            </p>
-          </div>
-        </ScrollReveal>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full spotlight-glass text-sm text-primary font-mono-label mb-6">
+            <Sparkles size={14} />
+            Technical Expertise
+          </span>
+          <h2 className="hero-title text-5xl md:text-7xl mb-6">
+            <TextScramble delay={200}>Skills &</TextScramble>{' '}
+            <span className="gradient-text">
+              <TextScramble delay={400}>Technologies</TextScramble>
+            </span>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            A comprehensive toolkit for building intelligent solutions
+          </p>
+        </motion.div>
 
         {/* Bento Grid Skills */}
-        <div className="bento-grid">
+        <div className="grid grid-cols-12 gap-4 md:gap-6">
           {skillCategories.map((category, index) => (
-            <ScrollReveal key={index} delay={index * 0.1} className={getSizeClass(category.size)}>
-              <Card className="glass-card card-hover group h-full">
-                <CardHeader className="pb-4">
-                  <div className="flex items-center gap-4">
-                    <motion.div 
-                      className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center shadow-lg`}
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 400 }}
+            <motion.div
+              key={index}
+              className={getSizeClass(category.size)}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <SpotlightCard className="p-6 h-full">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                    <category.icon size={22} className="text-primary" />
+                  </div>
+                  <h3 className="text-lg font-bold font-display">{category.title}</h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill, skillIndex) => (
+                    <motion.div
+                      key={skillIndex}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: skillIndex * 0.05 }}
+                      viewport={{ once: true }}
                     >
-                      <category.icon size={22} className="text-white" />
+                      <GlassChip>{skill}</GlassChip>
                     </motion.div>
-                    <CardTitle className="text-lg group-hover:text-primary transition-colors">{category.title}</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill, skillIndex) => (
-                      <GlowingChip 
-                        key={skillIndex} 
-                        highlight={skill.highlight}
-                        tag={skill.highlight && 'tag' in skill ? (skill as { tag: string }).tag : undefined}
-                      >
-                        {skill.name}
-                      </GlowingChip>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </ScrollReveal>
+                  ))}
+                </div>
+              </SpotlightCard>
+            </motion.div>
           ))}
         </div>
 
         {/* Stats */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
           {stats.map((stat, index) => (
-            <ScrollReveal key={index} delay={index * 0.1}>
-              <Card className="glass-card card-hover text-center">
-                <CardContent className="p-8">
-                  <div className="text-4xl font-bold gradient-text mb-2 code-font">{stat.value}</div>
-                  <p className="text-muted-foreground">{stat.label}</p>
-                </CardContent>
-              </Card>
-            </ScrollReveal>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <SpotlightCard className="p-8 text-center">
+                <div className="text-4xl font-bold gradient-text mb-2 code-font">{stat.value}</div>
+                <p className="text-muted-foreground">{stat.label}</p>
+              </SpotlightCard>
+            </motion.div>
           ))}
         </div>
       </div>
