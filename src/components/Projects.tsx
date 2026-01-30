@@ -61,7 +61,7 @@ const Projects = () => {
     const demoUrls: Record<string, string> = {
       "Summmify - AI YouTube Video Summarizer": "https://summmify-ai-demo.streamlit.app",
       "Sign Language Interpreter": "",
-      "Smart Image Gallery": ""
+      "Smart Image Gallery": "https://smart-gallery-80002.web.app"
     };
     const url = demoUrls[projectTitle];
     if (url) window.open(url, '_blank', 'noopener,noreferrer');
