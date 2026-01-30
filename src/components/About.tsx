@@ -126,8 +126,8 @@ const About = () => {
               <div className="flex flex-col gap-6">
                 {/* Header */}
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center shadow-lg shrink-0">
-                    <Heart size={24} className="text-white" />
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shrink-0">
+                    <Heart size={24} className="text-primary-foreground" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold display-font">{communityImpact.title}</h3>
@@ -140,10 +140,10 @@ const About = () => {
                   {communityImpact.initiatives.map((initiative, index) => (
                     <div 
                       key={index} 
-                      className="flex items-center gap-3 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20"
+                      className="flex items-center gap-3 p-4 rounded-xl bg-primary/10 border border-primary/20"
                     >
                       <span className="text-2xl shrink-0">{initiative.icon}</span>
-                      <span className="text-rose-500 font-medium text-sm">{initiative.label}</span>
+                      <span className="text-primary font-medium text-sm">{initiative.label}</span>
                     </div>
                   ))}
                 </div>
