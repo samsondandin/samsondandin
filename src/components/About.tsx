@@ -6,12 +6,12 @@ const About = () => {
   const highlights = [
     {
       icon: Brain,
-      title: "AI/ML Engineer",
+      title: "Aspiring AI/ML Engineer",
       description: "Deep learning, NLP, and intelligent systems"
     },
     {
       icon: Code,
-      title: "Developer",
+      title: "Aspiring Developer",
       description: "Python, Java, and modern frameworks"
     },
     {

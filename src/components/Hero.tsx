@@ -78,7 +78,7 @@ const Hero = () => {
               
               {/* Title */}
               <p className="text-xl md:text-2xl text-muted-foreground mb-3 font-medium">
-                AI/ML Engineer & Developer
+                Aspiring AI/ML Engineer & Developer
               </p>
               <p className="text-base text-muted-foreground/80 max-w-lg mx-auto lg:mx-0 leading-relaxed">
                 Building intelligent solutions that bridge technology and real-world impact through machine learning and deep learning
@@ -181,7 +181,7 @@ const Hero = () => {
                   <div className="w-full h-full rounded-full bg-background overflow-hidden">
                     <img 
                       src={profileImage} 
-                      alt="Samson Dandin - AI/ML Engineer"
+                      alt="Samson Dandin - Aspiring AI/ML Engineer"
                       className="w-full h-full object-cover"
                     />
                   </div>
