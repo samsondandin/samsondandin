@@ -354,6 +354,40 @@
   }
 }
 
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes bounce-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Premium smooth scrollbar for Webkit */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
 /* Animation utilities */
 .animate-fade-in {
   animation: fade-in 0.6s ease-out forwards;
@@ -365,6 +399,26 @@
 
 .animate-scale-in {
   animation: scale-in 0.5s ease-out forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--primary) / 0.1) 0%,
+    hsl(var(--primary) / 0.3) 50%,
+    hsl(var(--primary) / 0.1) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.animate-bounce-soft {
+  animation: bounce-soft 2s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
 }
 
 @keyframes fade-in {
@@ -382,6 +436,23 @@
   to { opacity: 1; transform: scale(1); }
 }
 
+/* Smooth transition utilities */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-premium {
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Text gradient animation */
+.gradient-text-animated {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 50%, hsl(180 80% 60%) 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
 /* Stagger children animations */
 .stagger-children > * {
   opacity: 0;
@@ -394,3 +465,37 @@
 .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
 .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
 .stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* Hover lift effect */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+}
+
+/* Magnetic cursor effect container */
+.magnetic {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus ring for accessibility */
+.focus-ring:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Premium shadow utilities */
+.shadow-glow {
+  box-shadow: 0 4px 20px hsl(var(--primary) / 0.3);
+}
+
+.shadow-glow-lg {
+  box-shadow: 0 8px 40px hsl(var(--primary) / 0.4);
+}
+
+/* Accent gradient for special elements */
+.accent-gradient {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+}
