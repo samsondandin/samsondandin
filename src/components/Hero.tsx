@@ -5,6 +5,7 @@ import { MapPin, Phone, Mail, Linkedin, Download, Github, ArrowDown, Sparkles, B
 import profileImage from '@/assets/profile-image.avif';
 import MagneticButton from '@/components/ui/MagneticButton';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import RotatingText from '@/components/ui/RotatingText';
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -78,7 +79,11 @@ const Hero = () => {
               
               {/* Title */}
               <p className="text-xl md:text-2xl text-muted-foreground mb-3 font-medium">
-                Aspiring AI/ML Engineer & Developer
+                Aspiring{' '}
+                <RotatingText 
+                  words={['AI/ML Engineer', 'Deep Learning Dev', 'NLP Enthusiast', 'Problem Solver']} 
+                  className="gradient-text font-bold"
+                />
               </p>
               <p className="text-base text-muted-foreground/80 max-w-lg mx-auto lg:mx-0 leading-relaxed">
                 Building intelligent solutions that bridge technology and real-world impact through machine learning and deep learning
