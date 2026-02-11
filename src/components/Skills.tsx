@@ -57,7 +57,7 @@ const Skills = () => {
       skills: [
         { name: "Python", highlight: false },
         { name: "SQL", highlight: false },
-        { name: "Java", highlight: true, tag: "Core" },
+        { name: "Java", highlight: false },
         { name: "C", highlight: false }
       ],
       color: "from-blue-500 to-cyan-500"
@@ -235,7 +235,6 @@ const Skills = () => {
                         <motion.div key={skillIndex} variants={chipVariants}>
                           <GlowingChip 
                             highlight={skill.highlight}
-                            tag={skill.highlight ? skill.tag : undefined}
                           >
                             {skill.name}
                           </GlowingChip>
