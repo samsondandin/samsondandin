@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Terminal } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 const Navigation = () => {
@@ -71,8 +71,8 @@ const Navigation = () => {
               whileHover={{ rotate: 5 }}
               transition={{ type: "spring", stiffness: 400 }}
             >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg group-hover:shadow-primary/25 transition-all duration-300">
-                <Terminal className="w-5 h-5 text-primary-foreground" />
+              <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg group-hover:shadow-primary/25 transition-all duration-300 ring-1 ring-primary/20">
+                <img src="/favicon.jpg" alt="SAM" className="w-full h-full object-cover" />
               </div>
               <motion.div 
                 className="absolute -inset-1 bg-gradient-to-br from-primary to-accent rounded-xl blur opacity-0 group-hover:opacity-30"
