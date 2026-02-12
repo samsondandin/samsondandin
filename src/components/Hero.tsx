@@ -82,7 +82,7 @@ const Hero = () => {
                 Aspiring{' '}
                 <RotatingText 
                   words={['AI/ML Engineer', 'Deep Learning Dev', 'NLP Enthusiast', 'Problem Solver']} 
-                  className="gradient-text font-bold"
+                  className="text-muted-foreground font-bold"
                 />
               </p>
               <p className="text-base text-muted-foreground/80 max-w-lg mx-auto lg:mx-0 leading-relaxed">
