@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github, Youtube, Eye, Code, Zap, CheckCircle, Server, ChevronDown, Activity, Image } from 'lucide-react';
+import { ExternalLink, Github, Youtube, Eye, Code, Zap, CheckCircle, Server, ChevronDown, Activity, Image, Globe } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import AnimatedCounter from '@/components/ui/AnimatedCounter';
 import GlowingChip from '@/components/ui/GlowingChip';
@@ -61,13 +61,35 @@ const Projects = () => {
     const demoUrls: Record<string, string> = {
       "Summmify - AI YouTube Video Summarizer": "https://summmify-ai-demo.streamlit.app",
       "Sign Language Interpreter": "",
-      "Smart Image Gallery": "https://smart-gallery-80002.web.app"
+      "Smart Image Gallery": "https://smart-gallery-80002.web.app",
+      "Developer Portfolio": "https://samsondandin.lovable.app"
     };
     const url = demoUrls[projectTitle];
     if (url) window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   const projects = [
+    {
+      id: "portfolio",
+      title: "Developer Portfolio",
+      description: "A premium, animated developer portfolio built with React and Framer Motion featuring cinematic preloader, glassmorphism design, 3D hover cards, and smooth scroll-triggered animations.",
+      impact: "Professional online presence with 95+ Lighthouse performance",
+      technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      deployment: ["Lovable Cloud", "Custom Domain"],
+      metrics: [
+        { value: 95, label: "Performance", positive: true },
+        { value: 100, label: "Accessibility", positive: true }
+      ],
+      features: ["Cinematic Preloader", "3D Hover Cards", "Glassmorphism UI", "Dark/Light Theme"],
+      architecture: {
+        input: "User Interaction",
+        processing: ["React Components", "Framer Motion Animations", "Tailwind Theming", "Responsive Layout"],
+        output: "Interactive Portfolio"
+      },
+      icon: Globe,
+      color: "from-emerald-500 to-teal-500",
+      status: "Live"
+    },
     {
       id: "smart-gallery",
       title: "Smart Image Gallery",
@@ -135,7 +157,7 @@ const Projects = () => {
   ];
 
   const stats = [
-    { value: 3, suffix: "+", label: "Major Projects" },
+    { value: 4, suffix: "+", label: "Major Projects" },
     { value: 6, suffix: "+", label: "Hours Saved Weekly" },
     { value: 100, suffix: "%", label: "Real-world Impact" },
   ];
@@ -162,7 +184,7 @@ const Projects = () => {
         </ScrollReveal>
 
         {/* Projects Grid - All Uniform */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {projects.map((project, index) => (
             <ScrollReveal key={project.id} delay={index * 0.15}>
               <motion.div
