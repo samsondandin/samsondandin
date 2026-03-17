@@ -14,13 +14,13 @@ const experiences = [
     period: 'Mar 2026 – Present',
     current: true,
     description:
-      'Working at the intersection of Computer Vision and supply chain intelligence, developing ML-driven solutions for Digital Product Passports (DPP) that bring transparency and traceability to global supply chains.',
+      'Engineering the next generation of Digital Product Passports (DPP). Currently specializing in .NET backend architecture and its integration with decentralized digital twin systems.',
     highlights: [
-      'Building Computer Vision pipelines for automated product identification and tracking across supply chain stages',
-      'Developing ML models powering Digital Product Passports (DPP) to ensure regulatory compliance and sustainability reporting',
-      'Engineering data pipelines that transform raw supply chain signals into actionable transparency metrics',
+      'Architecting robust .NET backend services for scalable Digital Product Passport (DPP) platforms',
+      'Integrating decentralized digital twin systems with enterprise backend infrastructure',
+      'Building APIs and data pipelines that power end-to-end product traceability and compliance workflows',
     ],
-    technologies: ['Computer Vision', 'Digital Product Passports', 'Machine Learning', 'Supply Chain AI', 'Python', 'TensorFlow'],
+    technologies: ['.NET', 'Digital Product Passports', 'Digital Twins', 'C#', 'Backend Architecture', 'REST APIs'],
     icon: Cpu,
     color: 'from-primary to-accent',
   },
