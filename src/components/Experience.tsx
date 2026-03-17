@@ -14,7 +14,7 @@ const experiences = [
     period: 'Mar 2026 – Present',
     current: true,
     description:
-      'Engineering the next generation of Digital Product Passports (DPP). Currently specializing in .NET backend architecture and its integration with decentralized digital twin systems.',
+      'Building Digital Product Passport (DPP) infrastructure with .NET backend architecture and decentralized digital twin systems.',
     highlights: [
       'Architecting robust .NET backend services for scalable Digital Product Passport (DPP) platforms',
       'Integrating decentralized digital twin systems with enterprise backend infrastructure',
