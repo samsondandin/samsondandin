@@ -5,6 +5,7 @@ import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Skills from '@/components/Skills';
 import Projects from '@/components/Projects';
+import Experience from '@/components/Experience';
 import Certifications from '@/components/Certifications';
 import Contact from '@/components/Contact';
 import ScrollToTop from '@/components/ScrollToTop';
@@ -61,6 +62,17 @@ const Index = () => {
               transition={{ duration: 0.8 }}
             >
               <About />
+            </motion.div>
+            
+            <SectionDivider />
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.8 }}
+            >
+              <Experience />
             </motion.div>
             
             <SectionDivider />
