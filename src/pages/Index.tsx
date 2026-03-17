@@ -65,6 +65,17 @@ const Index = () => {
             </motion.div>
             
             <SectionDivider />
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.8 }}
+            >
+              <Experience />
+            </motion.div>
+            
+            <SectionDivider />
             
             <motion.div
               initial={{ opacity: 0 }}
