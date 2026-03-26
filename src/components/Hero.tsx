@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Phone, Mail, Linkedin, Download, Github, ArrowDown, Sparkles, Brain, Code2, ChevronRight } from 'lucide-react';
+import { MapPin, Mail, Linkedin, Download, Github, ArrowDown, Sparkles, Brain, Code2, ChevronRight } from 'lucide-react';
 import profileImage from '@/assets/profile-image.avif';
 import MagneticButton from '@/components/ui/MagneticButton';
 import ScrollReveal from '@/components/ui/ScrollReveal';
