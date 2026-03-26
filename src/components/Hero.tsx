@@ -123,11 +123,6 @@ const Hero = () => {
                 <Mail size={18} className="text-primary" />
                 <span className="text-muted-foreground group-hover:text-foreground transition-colors truncate">samsondandin335@gmail.com</span>
               </a>
-              <a href="tel:+917619687402" 
-                 className="flex items-center gap-3 px-4 py-3 rounded-xl glass-card hover:border-primary/50 transition-all duration-300 group interactive">
-                <Phone size={18} className="text-primary" />
-                <span className="text-muted-foreground group-hover:text-foreground transition-colors">+91 7619687402</span>
-              </a>
               <a href="https://linkedin.com/in/samson-dandin" target="_blank" rel="noopener noreferrer"
                  className="flex items-center gap-3 px-4 py-3 rounded-xl glass-card hover:border-primary/50 transition-all duration-300 group interactive">
                 <Linkedin size={18} className="text-primary" />

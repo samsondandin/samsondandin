@@ -25,7 +25,7 @@ const Contact = () => {
 
   const contactInfo = [
     { icon: Mail, label: "Email", value: "samsondandin335@gmail.com", href: "mailto:samsondandin335@gmail.com" },
-    { icon: Phone, label: "Phone", value: "+91 7619687402", href: "tel:+917619687402" },
+    
     { icon: MapPin, label: "Location", value: "Dharwad, Karnataka, India", href: null },
     { icon: Linkedin, label: "LinkedIn", value: "samson-dandin", href: "https://linkedin.com/in/samson-dandin" },
     { icon: Github, label: "GitHub", value: "samsondandin", href: "https://github.com/samsondandin" }
