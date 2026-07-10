@@ -4,10 +4,11 @@ import { Badge } from '@/components/ui/badge';
 import { MapPin, Mail, Linkedin, Download, Github, ArrowDown, Sparkles, Brain, Code2, ChevronRight } from 'lucide-react';
 import profileImage from '@/assets/profile-image.avif';
 import MagneticButton from '@/components/ui/MagneticButton';
-import ScrollReveal from '@/components/ui/ScrollReveal';
 import RotatingText from '@/components/ui/RotatingText';
+import { useToast } from '@/hooks/use-toast';
 
 const Hero = () => {
+  const { toast } = useToast();
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
@@ -31,9 +32,14 @@ const Hero = () => {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      toast({ title: 'Resume Downloaded', description: 'Thanks for checking out my work!' });
     } catch (error) {
       console.error('Download error:', error);
-      alert('Unable to download resume. Please contact me directly.');
+      toast({
+        title: 'Download Failed',
+        description: 'Please email me at samsondandin335@gmail.com',
+        variant: 'destructive',
+      });
     }
   };
 
@@ -244,11 +250,12 @@ const Hero = () => {
           transition={{ delay: 1.2, duration: 0.6 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
         >
-          <motion.button 
-            onClick={scrollToAbout} 
+          <motion.button
+            onClick={scrollToAbout}
+            aria-label="Scroll to About section"
             className="text-muted-foreground hover:text-primary transition-colors"
             animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           >
             <span className="text-xs font-medium mb-2 block">Scroll to explore</span>
             <ArrowDown size={20} className="mx-auto" />

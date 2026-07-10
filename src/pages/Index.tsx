@@ -166,7 +166,7 @@ const Index = () => {
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 }}
                 >
-                  AI/ML Enthusiast | Problem Solver | Aspiring Developer
+                  AI/ML Intern @ Karpine Technologies • Aspiring AI/ML Engineer
                 </motion.p>
                 
                 {/* Social Links */}
