@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { Mail, Phone, MapPin, Linkedin, Send, Download, Loader2, Github, MessageCircle, CheckCircle, Sparkles } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Send, Download, Loader2, Github, MessageCircle, CheckCircle, Sparkles } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { sanitizeInput, checkRateLimit, validateFormData, logSecurityEvent } from '@/utils/security';
 import ScrollReveal from '@/components/ui/ScrollReveal';
@@ -24,11 +24,10 @@ const Contact = () => {
   });
 
   const contactInfo = [
-    { icon: Mail, label: "Email", value: "samsondandin335@gmail.com", href: "mailto:samsondandin335@gmail.com" },
-    
-    { icon: MapPin, label: "Location", value: "Dharwad, Karnataka, India", href: null },
-    { icon: Linkedin, label: "LinkedIn", value: "samson-dandin", href: "https://linkedin.com/in/samson-dandin" },
-    { icon: Github, label: "GitHub", value: "samsondandin", href: "https://github.com/samsondandin" }
+    { icon: Mail, label: 'Email', value: 'samsondandin335@gmail.com', href: 'mailto:samsondandin335@gmail.com' },
+    { icon: MapPin, label: 'Location', value: 'Dharwad, Karnataka, India', href: null },
+    { icon: Linkedin, label: 'LinkedIn', value: 'samson-dandin', href: 'https://linkedin.com/in/samson-dandin' },
+    { icon: Github, label: 'GitHub', value: 'samsondandin', href: 'https://github.com/samsondandin' },
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -312,15 +311,19 @@ const Contact = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <MagneticButton>
-                    <Button onClick={() => window.open('mailto:samsondandin335@gmail.com', '_blank')} className="btn-primary">
-                      <Mail size={18} className="mr-2" />
-                      Email Me Directly
+                    <Button asChild className="btn-primary">
+                      <a href="mailto:samsondandin335@gmail.com" aria-label="Send email to Samson Dandin">
+                        <Mail size={18} className="mr-2" />
+                        Email Me Directly
+                      </a>
                     </Button>
                   </MagneticButton>
                   <MagneticButton>
-                    <Button onClick={() => window.open('https://linkedin.com/in/samson-dandin', '_blank')} variant="outline" className="btn-outline">
-                      <Linkedin size={18} className="mr-2" />
-                      Connect on LinkedIn
+                    <Button asChild variant="outline" className="btn-outline">
+                      <a href="https://linkedin.com/in/samson-dandin" target="_blank" rel="noopener noreferrer" aria-label="Connect with Samson on LinkedIn">
+                        <Linkedin size={18} className="mr-2" />
+                        Connect on LinkedIn
+                      </a>
                     </Button>
                   </MagneticButton>
                 </div>
