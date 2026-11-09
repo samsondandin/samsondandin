@@ -1,0 +1,3 @@
+- [ ] Review the uploaded redesign brief against current portfolio content, resume, assets, and working interactions.
+- [ ] Redesign the existing portfolio into a responsive, editorial engineering portfolio while preserving verified information and working functionality.
+- [ ] Verify navigation, project links, resume download, contact submission behavior, responsive layouts, and preview health.
