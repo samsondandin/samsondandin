@@ -1,3 +1,4 @@
-- [ ] Review the uploaded redesign brief against current portfolio content, resume, assets, and working interactions.
-- [ ] Redesign the existing portfolio into a responsive, editorial engineering portfolio while preserving verified information and working functionality.
-- [ ] Verify navigation, project links, resume download, contact submission behavior, responsive layouts, and preview health.
+- [x] Review the redesign brief, current content, resume, image assets, public project sources, and working links.
+- [ ] Redesign the portfolio with a warm editorial layout and forest-green accents, preserving verified details and functioning controls.
+- [ ] Add the education and recognition section and organize projects by AI/software focus.
+- [ ] Verify navigation, project links, resume download, contact form behavior, responsive layouts, and preview health.
